@@ -1,24 +1,29 @@
-# TPO-Grupo08-Progra1
+# Trabajo Práctico Obligatorio: Sistema de Gestión de Cámaras de Seguridad
 
-DETALLE
-1. Explicar de que se trata el sistema propuesto:
-El sistema propuesto se basa en una gestión de cámaras de seguridad donde cada una está calificada por número, por ejemplo: CAM01, CAM02, entre otras donde con un sensor va a poder reconocer quien es la persona que paso con su nombre completo, DNI y datos que estén la base central y luego se guarda en una lista.
-Esto se basa en una simulación donde las cámaras van a ser el protagonista del programa y las personas el rol secundario para poder cumplir la función.
-Su función es cumplir el reconocimiento facial de cada persona, por donde paso y quien es para que haya una organización y un control de las cosas.
+## DETALLE
 
-2. Listar y explicar cuáles son las funcionalidades que se tiene previsto que el sistema incluya
--	ABM de cámaras.
--	ABM de personas.
--	Log de eventos registrados por las cámaras.
--	Generar informes a través de eventos que reporten cantidad de asistencia, porcentaje, mínima, máxima.
--	Mostrar cuantas veces pasó una persona por un lugar, qué cámara lo detectó y cuando mediante un contador, condicionales e iterativas.
+### Explicación del sistema propuesto
 
--	Al ser una simulación de un espacio geográfico sin cámaras de verdad, el programa realizara el objetivo con todo lo aprendido en las clases y en código donde va a ser prueba y error hasta encontrar el correcto, el más dinámico y organizado posible.
--	Se almacenarán en una lista todas las cámaras que quiera el cliente.
--	Se almacenarán en una matriz los usuarios generados con sus respectivos datos de ID, Nombre de Usuario, Área y Rol.
--	Todas las cámaras van a ir desde una lista que va a ir guardando cada dato necesario y luego se lleva a una matriz para que estén todas juntas y ver en qué lugar iría cada cámara.
-La seria la cantidad de cámaras en el lugar y la matriz el lugar de donde se pondrían las cámaras.
--	El lugar sería uno especifico elegido por el cliente y con la cantidad de personas que habitan en ese lugar.
+El sistema propuesto se basa en la gestión de cámaras de seguridad, donde cada una está calificada por un número, por ejemplo: `CAM01`, `CAM02`, entre otras. Con un sensor, se reconocerá a la persona que pasó, incluyendo su nombre completo, DNI y otros datos que estén en la base central. Esta información luego se almacena en una lista.
+
+El sistema es una simulación donde las cámaras serán el protagonista principal del programa y las personas tendrán un rol secundario para cumplir la función. Su objetivo principal es realizar el **reconocimiento facial** de cada persona, indicando por dónde pasó y quién es, para mantener la organización y el control.
+
+### Funcionalidades previstas del sistema
+
+1. **ABM de cámaras**: Alta, Baja y Modificación de cámaras.
+2. **ABM de personas**: Alta, Baja y Modificación de personas.
+3. **Log de eventos registrados por las cámaras**.
+4. **Generación de informes** a través de eventos que reporten cantidad de asistencia, porcentaje, mínima y máxima.
+5. **Contador de veces que una persona pasó por un lugar**: El sistema debe ser capaz de mostrar cuántas veces pasó una persona por un lugar, qué cámara lo detectó y cuándo, utilizando contadores, condicionales e iterativas.
+
+### Descripción técnica
+
+- **Simulación**: Este sistema es una simulación de un espacio geográfico sin cámaras de verdad. El programa realizará su objetivo basándose en los conceptos aprendidos en las clases y con código que irá afinándose mediante prueba y error, buscando una solución dinámica y organizada.
+- **Almacenamiento de cámaras**: Las cámaras serán almacenadas en una lista que podrá ser gestionada por el cliente.
+- **Matriz de usuarios**: Los usuarios generados, junto con sus respectivos datos (ID, Nombre de Usuario, Área y Rol), se almacenarán en una matriz.
+- **Distribución de cámaras**: Todas las cámaras se irán guardando en una lista que, posteriormente, se volcará en una matriz para visualizar la distribución de las cámaras en el lugar.
+- **Lugar específico**: El sistema simulará un lugar específico, elegido por el cliente, con una cantidad de personas que habitan en ese espacio.
+
 
 ![image](https://github.com/user-attachments/assets/168dba7f-25b2-45d7-9bde-cfaf1bc3d069)
 
