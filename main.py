@@ -76,3 +76,60 @@ def main():
 
 # Punto de entrada al programa
 main()
+
+#----------------------------------------------------------------------------------------------
+# Test
+#----------------------------------------------------------------------------------------------
+"""
+personas = {
+    "12345678": {
+        "nombre_completo": "Juan Pérez",
+        "DNI": "12345678",
+        "fecha_nacimiento": "20-01-1990",
+        "email": "juanperez@uade.edu.ar",
+        "area": "Seguridad",
+        "rol": "Guardia"
+    },
+    "87654321": {
+        "nombre_completo": "Ana López",
+        "DNI": "87654321",
+        "fecha_nacimiento": "22-10-1996",
+        "email": "analopez@uade.edu.ar",
+        "area": "Administración",
+        "rol": "Administradora"
+    }
+}
+
+camaras = {
+    "CAM01": {
+        "ubicacion": "Hall Central",
+        "tipo_sensor": "Facial",
+        "estado": "Activa"
+    },
+    "CAM02": {
+        "ubicacion": "Pasillo 2",
+        "tipo_sensor": "Movimiento",
+        "estado": "Activa"
+    }
+    "CAM03": {
+        "ubicacion": "Comedor",
+        "tipo_sensor": "Movimiento",
+        "estado": "Inactiva"
+    }
+}
+
+
+registros = {
+    "E001": {
+        "camara": "CAM01",
+        "persona_detectada": "12345678",
+        "fecha": "2024-09-30",
+        "hora": "08:30"
+    },
+    "E002": {
+        "camara": "CAM02",
+        "persona_detectada": "87654321",
+        "fecha": "2024-09-30",
+        "hora": "09:15"
+    }
+}"""
