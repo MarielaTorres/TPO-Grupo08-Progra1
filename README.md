@@ -28,3 +28,38 @@ El sistema es una simulación donde las cámaras serán el protagonista principa
 
 ![image](https://github.com/user-attachments/assets/168dba7f-25b2-45d7-9bde-cfaf1bc3d069)
 
+Tareas de Desarrollo
+
+ABM de Cámaras (Alta, Baja, Modificación):
+Crear funciones que permitan agregar, eliminar y modificar cámaras en la lista.
+Responsable: 
+Estado: Funciones inciales ya creadas, organizarlas de la mejor manera, crear un punto de entrada al modulo (simil menu principal) y conectar el menu principal al menu de Camaras
+
+ABM de Personas (Alta, Baja, Modificación):
+Implementar funciones para gestionar personas, con almacenamiento en la matriz de usuarios.
+Responsable:
+Estado: Funciones inciales ya creadas, organizarlas de la mejor manera, crear un punto de entrada al modulo (simil menu principal) y conectar el menu principal al menu de Personas
+
+Log de Eventos:
+Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de persona, fecha y hora.
+Responsable: 
+
+Contador de Asistencias:
+Implementar un contador que muestre cuántas veces una persona pasó por cada cámara y cuándo.
+Responsable: 
+
+Generación de Informes:
+Crear funciones que generen informes basados en los eventos registrados: asistencia, porcentaje, mínima y máxima.
+Responsable: 
+
+Simulación y Pruebas:
+Crear un script de simulación para probar todas las funcionalidades del sistema.
+Responsable: 
+
+Revisión y Ajustes del Informe:
+Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
+Responsable:
+
+Documentacion del codigo:
+Documentar todas las funciones y su uso en el código.
+Responsable
