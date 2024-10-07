@@ -34,13 +34,15 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 
 1. **ABM de Cámaras (Alta, Baja, Modificación)**
    - **Descripción**: Crear funciones que permitan agregar, eliminar y modificar cámaras en la lista.
-   - **Responsable**: *(Asignar responsable)*
+   - **Responsable**: Kevin
    - **Estado**: Funciones iniciales ya creadas, se necesita organizarlas de la mejor manera, crear un punto de entrada al módulo (similar a un menú principal) y conectar el menú principal al menú de Cámaras.
+   - WIP
 
 2. **ABM de Personas (Alta, Baja, Modificación)**
    - **Descripción**: Implementar funciones para gestionar personas, con almacenamiento en la matriz de usuarios.
-   - **Responsable**: *(Asignar responsable)*
+   - **Responsable**: Caro
    - **Estado**: Funciones iniciales ya creadas, se necesita organizarlas de la mejor manera, crear un punto de entrada al módulo (similar a un menú principal) y conectar el menú principal al menú de Personas.
+   - WIP
 
 3. **Log de Eventos**
    - **Descripción**: Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de la persona, fecha y hora.
@@ -71,3 +73,9 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
    - **Descripción**: Documentar todas las funciones y su uso en el código.
    - **Responsable**: *(Asignar responsable)*
    - **Estado**: *(Pendiente)*
+  
+9. **Menu de inicio y validaciones**
+   - **Descripción**: Crear un menu de inicio que de acceso a las diferentes funcionalidades del sistema
+   - **Responsable**: Agustin
+   - **Estado**: WIP
+
