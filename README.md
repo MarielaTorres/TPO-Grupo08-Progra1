@@ -28,38 +28,46 @@ El sistema es una simulación donde las cámaras serán el protagonista principa
 
 ![image](https://github.com/user-attachments/assets/168dba7f-25b2-45d7-9bde-cfaf1bc3d069)
 
-Tareas de Desarrollo
+### Tareas de Desarrollo
 
-ABM de Cámaras (Alta, Baja, Modificación):
-Crear funciones que permitan agregar, eliminar y modificar cámaras en la lista.
-Responsable: 
-Estado: Funciones inciales ya creadas, organizarlas de la mejor manera, crear un punto de entrada al modulo (simil menu principal) y conectar el menu principal al menu de Camaras
+A continuación se detallan las tareas de desarrollo propuestas para el sistema, incluyendo su estado actual y responsabilidades:
 
-ABM de Personas (Alta, Baja, Modificación):
-Implementar funciones para gestionar personas, con almacenamiento en la matriz de usuarios.
-Responsable:
-Estado: Funciones inciales ya creadas, organizarlas de la mejor manera, crear un punto de entrada al modulo (simil menu principal) y conectar el menu principal al menu de Personas
+1. **ABM de Cámaras (Alta, Baja, Modificación)**
+   - **Descripción**: Crear funciones que permitan agregar, eliminar y modificar cámaras en la lista.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: Funciones iniciales ya creadas, se necesita organizarlas de la mejor manera, crear un punto de entrada al módulo (similar a un menú principal) y conectar el menú principal al menú de Cámaras.
 
-Log de Eventos:
-Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de persona, fecha y hora.
-Responsable: 
+2. **ABM de Personas (Alta, Baja, Modificación)**
+   - **Descripción**: Implementar funciones para gestionar personas, con almacenamiento en la matriz de usuarios.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: Funciones iniciales ya creadas, se necesita organizarlas de la mejor manera, crear un punto de entrada al módulo (similar a un menú principal) y conectar el menú principal al menú de Personas.
 
-Contador de Asistencias:
-Implementar un contador que muestre cuántas veces una persona pasó por cada cámara y cuándo.
-Responsable: 
+3. **Log de Eventos**
+   - **Descripción**: Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de la persona, fecha y hora.
+   - **Responsable**: Mariela Torres
+   - **Estado**: *(Pendiente)*
 
-Generación de Informes:
-Crear funciones que generen informes basados en los eventos registrados: asistencia, porcentaje, mínima y máxima.
-Responsable: 
+4. **Contador de Asistencias**
+   - **Descripción**: Implementar un contador que muestre cuántas veces una persona pasó por cada cámara y cuándo.
+   - **Responsable**: Mariela Torres
+   - **Estado**: *(Pendiente)*
 
-Simulación y Pruebas:
-Crear un script de simulación para probar todas las funcionalidades del sistema.
-Responsable: 
+5. **Generación de Informes**
+   - **Descripción**: Crear funciones que generen informes basados en los eventos registrados: asistencia, porcentaje, mínima y máxima.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: *(Pendiente)*
 
-Revisión y Ajustes del Informe:
-Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
-Responsable:
+6. **Simulación y Pruebas**
+   - **Descripción**: Crear un script de simulación para probar todas las funcionalidades del sistema.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: *(Pendiente)*
 
-Documentacion del codigo:
-Documentar todas las funciones y su uso en el código.
-Responsable
+7. **Revisión y Ajustes del Informe**
+   - **Descripción**: Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: *(Pendiente)*
+
+8. **Documentación del Código**
+   - **Descripción**: Documentar todas las funciones y su uso en el código.
+   - **Responsable**: *(Asignar responsable)*
+   - **Estado**: *(Pendiente)*
