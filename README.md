@@ -30,6 +30,8 @@ El sistema es una simulación donde las cámaras serán el protagonista principa
 
 ### Tareas de Desarrollo
 
+### RECOMENDACIÓN DEL PROFE PARA CRUD, al construir la función que "elimina" un elemento, recomendó mejor cambiarlo de estado "activo" a "inactivo".
+
 A continuación se detallan las tareas de desarrollo propuestas para el sistema, incluyendo su estado actual y responsabilidades:
 
 1. **ABM de Cámaras (Alta, Baja, Modificación)**
