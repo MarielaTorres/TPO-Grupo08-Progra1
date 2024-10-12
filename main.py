@@ -15,7 +15,9 @@ Pendientes:
 # MÓDULOS
 #----------------------------------------------------------------------------------------------
 
-'''TBD'''
+from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
+from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
+
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
@@ -24,14 +26,16 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # CUERPO PRINCIPAL
 #---------------------------------------------------------------------------------
-# 
-# -------------
-def main():
-    #-------------------------------------------------
-    # Inicialización de variables
-    #----------------------------------------------------------------------------------------------
-    ...
 
+def main():
+
+    #-------------------------------------------------
+    # Inicialización de variables y diccionarios
+    #----------------------------------------------------------------------------------------------
+    camaras = {}
+    personas = {}
+    contador_id = 1
+    
     #-------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
@@ -58,7 +62,7 @@ def main():
         print()
 
         if opcion == "0":  # Opción salir del programa
-            exit() 
+            break
 
         elif opcion == "1":  # Opción 1 - Gestión de cámaras
             opciones = 5
@@ -82,21 +86,25 @@ def main():
                     input("Opción inválida. Presione ENTER para volver a seleccionar.")
                 print()
 
-            if opcion_camara == "0":  # Volver al menú principal
+            if opcion_camara == "0":  # Si la condición evalúa y es verdad, sigue con el siguiente bloque de código
                 continue
 
             # Aquí puedes implementar la lógica para cada opción del CRUD de cámaras
             if opcion_camara == "1":
-                print("Crear cámara")
+                camara = input("Ingrese el nombre de la cámara: ")
+                lugar = input("Ingrese el lugar de la cámara: ")                
+                contador_id = crearCamara(camaras, camara, lugar, contador_id)
                 # Lógica para crear cámara
             elif opcion_camara == "2":
-                print("Listar cámaras")
+                listarCamaras(camaras)
                 # Lógica para listar cámaras
             elif opcion_camara == "3":
-                print("Actualizar cámara")
+                id = int(input("Ingrese el ID de la cámara a actualizar: ")) 
+                actualizarCamara(camaras, id)
                 # Lógica para actualizar cámara
             elif opcion_camara == "4":
-                print("Eliminar cámara")
+                id = int(input("Ingrese el ID de la cámara a actualizar: ")) 
+                eliminarCamara(camaras, id)
                 # Lógica para eliminar cámara
 
         elif opcion == "2":  # Opción 2 - Gestión de personas
@@ -120,19 +128,14 @@ def main():
             if opcion_persona == "0":  # Volver al menú principal
                 continue
 
-            # Aquí puedes implementar la lógica para cada opción del CRUD de personas
             if opcion_persona == "1":
-                print("Crear persona")
-                # Lógica para crear persona
+                crearPersona(personas)
             elif opcion_persona == "2":
-                print("Listar personas")
-                # Lógica para listar personas
+                listarPersonas(personas)
             elif opcion_persona == "3":
-                print("Actualizar persona")
-                # Lógica para actualizar persona
+                actualizarPersona(personas)
             elif opcion_persona == "4":
-                print("Eliminar persona")
-                # Lógica para eliminar persona
+                eliminarPersona(personas)
 
         elif opcion == "3":  # Opción 3 - Log de Movimientos
             pass  # Implementar menú de log de movimientos
@@ -143,63 +146,6 @@ def main():
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
-
 # Punto de entrada al programa
-main()
-
-#----------------------------------------------------------------------------------------------
-# Test
-#----------------------------------------------------------------------------------------------
-"""
-personas = {
-    "12345678": {
-        "nombre_completo": "Juan Pérez",
-        "DNI": "12345678",
-        "fecha_nacimiento": "20-01-1990",
-        "email": "juanperez@uade.edu.ar",
-        "area": "Seguridad",
-        "rol": "Guardia"
-    },
-    "87654321": {
-        "nombre_completo": "Ana López",
-        "DNI": "87654321",
-        "fecha_nacimiento": "22-10-1996",
-        "email": "analopez@uade.edu.ar",
-        "area": "Administración",
-        "rol": "Administradora"
-    }
-}
-
-camaras = {
-    "CAM01": {
-        "ubicacion": "Hall Central",
-        "tipo_sensor": "Facial",
-        "estado": "Activa"
-    },
-    "CAM02": {
-        "ubicacion": "Pasillo 2",
-        "tipo_sensor": "Movimiento",
-        "estado": "Activa"
-    },
-    "CAM03": {
-        "ubicacion": "Comedor",
-        "tipo_sensor": "Movimiento",
-        "estado": "Inactiva"
-    }
-}
-
-registros = {
-    "E001": {
-        "camara": "CAM01",
-        "persona_detectada": "12345678",
-        "fecha": "2024-09-30",
-        "hora": "08:30"
-    },
-    "E002": {
-        "camara": "CAM02",
-        "persona_detectada": "87654321",
-        "fecha": "2024-09-30",
-        "hora": "09:15"
-    }
-}
-"""
+if __name__ == "__main__":
+    main()
