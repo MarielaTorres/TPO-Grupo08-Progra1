@@ -49,7 +49,7 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 3. **Log de Eventos**
    - **Descripción**: Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de la persona, fecha y hora.
    - **Responsable**: Mariela Torres
-   - **Estado**: *(Pendiente)*
+   - **Estado**: Se desarrolló el log de eventos y se agregó al main con el menú correspondiente.
 
 4. **Contador de Asistencias**
    - **Descripción**: Implementar un contador que muestre cuántas veces una persona pasó por cada cámara y cuándo.

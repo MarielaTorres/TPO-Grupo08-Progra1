@@ -17,6 +17,7 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
+from log_events import registrar_evento, listar_eventos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
@@ -35,6 +36,7 @@ def main():
     camaras = {}
     personas = {}
     contador_id = 1
+    registros = {}
     
     #-------------------------------------------------
     # Bloque de menú
@@ -110,7 +112,9 @@ def main():
         elif opcion == "2":  # Opción 2 - Gestión de personas
             opciones = 6
             while True:
+                print("---------------------------")
                 print("\n--- Menú de gestión de Personas ---")
+                print("---------------------------")
                 print("1. Crear persona")
                 print("2. Listar personas")
                 print("3. Actualizar persona")
@@ -138,7 +142,34 @@ def main():
                 eliminarPersona(personas)
 
         elif opcion == "3":  # Opción 3 - Log de Movimientos
-            pass  # Implementar menú de log de movimientos
+            opciones = 3
+            while True:
+                print("---------------------------")
+                print("\n--- Log de Movimientos ---")
+                print("---------------------------")
+                print("1. Registrar evento")
+                print("2. Listar eventos")
+                print("0. Volver al menú principal")
+                print("---------------------------")
+                opcion_log = input("Seleccione una opción: ")
+                if opcion_log in [str(i) for i in range(0, opciones)]:  # Solo continua si se elige una opción de menú válida
+                    break
+                else:
+                    input("Opción inválida. Presione ENTER para volver a seleccionar.")
+                print()
+
+            if opcion_log == "0":  # Volver al menú principal
+                continue
+            if opcion_log == '1':
+                id_camara = input("Ingrese el ID de la cámara: ")
+                id_persona = input("Ingrese el ID de la persona: ")
+                registrar_evento(id_camara, id_persona, registros)
+            elif opcion_log == '2':
+                listar_eventos(registros)
+            elif opcion_log == '0':
+                break
+            else:
+                print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
             pass  # Implementar menú de informes
