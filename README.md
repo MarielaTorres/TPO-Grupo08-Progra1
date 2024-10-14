@@ -63,8 +63,8 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 
 6. **Simulación y Pruebas**
    - **Descripción**: Crear un script de simulación para probar todas las funcionalidades del sistema.
-   - **Responsable**: *(Asignar responsable)*
-   - **Estado**: *(Pendiente)*
+   - **Responsable**: Mariela Torres
+   - **Estado**: Se agregaron los 30 items para la precarga de datos para personas, camaras y log_eventos.
 
 7. **Revisión y Ajustes del Informe**
    - **Descripción**: Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
