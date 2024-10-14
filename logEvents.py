@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def registrar_evento(id_camara, id_persona, registros):
+def registrarEvento(id_camara, id_persona, registros):
     """
     Argumentos:
         id_camara: Identificador de la cámara que detecta el evento.
@@ -24,7 +24,7 @@ def registrar_evento(id_camara, id_persona, registros):
     
     print(f"Evento {id_evento} registrado exitosamente!")
 
-def listar_eventos(registros):
+def listarEventos(registros):
     """Lista todos los eventos registrados."""
     if not registros:
         print("No hay eventos registrados.")

@@ -1,8 +1,8 @@
 from camaras import crearCamara
 from personas import crearPersona
-from log_events import registrar_evento
+from logEvents import registrarEvento
 
-def precarga_datos(camaras, personas, registros, contador_id):
+def precargaDatos(camaras, personas, registros, contador_id):
     """
     Args:
         camaras: Diccionario donde se almacenan las cámaras.
@@ -34,7 +34,7 @@ def precarga_datos(camaras, personas, registros, contador_id):
     for i in range(1, 31):
         id_camara = f"CAM{str(i).zfill(2)}"
         id_persona = str(i)
-        registrar_evento(id_camara, id_persona, registros)
+        registrarEvento(id_camara, id_persona, registros)
 
     # Retornar el contador actualizado
     return contador_id

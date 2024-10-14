@@ -17,8 +17,8 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from log_events import registrar_evento, listar_eventos
-from test import precarga_datos
+from logEvents import registrarEvento, listarEventos
+from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
@@ -42,7 +42,7 @@ def main():
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    contador_id = precarga_datos(camaras, personas, registros, contador_id) # Actualizamos la variable del contador ID de cámaras para que tome correctamente el ID en caso de agregar más cámaras
+    contador_id = precargaDatos(camaras, personas, registros, contador_id) # Actualizamos la variable del contador ID de cámaras para que tome correctamente el ID en caso de agregar más cámaras
     
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
@@ -169,9 +169,9 @@ def main():
             if opcion_log == '1':
                 id_camara = input("Ingrese el ID de la cámara: ")
                 id_persona = input("Ingrese el ID de la persona: ")
-                registrar_evento(id_camara, id_persona, registros)
+                registrarEvento(id_camara, id_persona, registros)
             elif opcion_log == '2':
-                listar_eventos(registros)
+                listarEventos(registros)
             elif opcion_log == '0':
                 break
             else:
