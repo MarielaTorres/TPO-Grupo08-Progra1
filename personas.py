@@ -1,10 +1,12 @@
-def crearPersona(personas):
+def crearPersona(personas,nombre=None, area=None):
     """Crea una nueva persona y la agrega al diccionario."""
-    nombre = input("Ingrese el nombre: ")
-    area = input("Ingrese el área: ")
+    if nombre is None:
+        nombre = input("Ingrese el nombre: ")
+    if area is None:
+        area = input("Ingrese el área: ")
     id_persona = len(personas) + 1  # Generar un ID único
     personas[id_persona] = {"nombre": nombre, "area": area}
-    print("Persona creada exitosamente!")
+    print(F"Persona con ID {id_persona} creada exitosamente!")
 
 def listarPersonas(personas):
     """Lista todas las personas almacenadas."""
