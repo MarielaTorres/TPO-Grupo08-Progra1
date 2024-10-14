@@ -38,34 +38,3 @@ def eliminarPersona(personas):
         print("Persona eliminada exitosamente!")
     else:
         print("ID inválido.")
-
-def main():
-    
-    # Diccionario para almacenar las personas
-    personas = {}
-
-    while True:
-        print("\n--- CRUD de Personas ---")
-        print("1. Crear persona")
-        print("2. Listar personas")
-        print("3. Actualizar persona")
-        print("4. Eliminar persona")
-        print("5. Salir")
-
-        opcion = input("Ingrese una opción: ")
-
-        if opcion == '1':
-            crearPersona()
-        elif opcion == '2':
-            listarPersonas()
-        elif opcion == '3':
-            actualizarPersona()
-        elif opcion == '4':
-            eliminarPersona()
-        elif opcion == '5':
-            break
-        else:
-            print("Opción inválida.")
-
-if __name__ == "__main__":
-    main()
