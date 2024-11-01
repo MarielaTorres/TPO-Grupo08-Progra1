@@ -81,12 +81,12 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
    - **Responsable**: Agustin
    - **Estado**: WIP
      
-10.**Validación de datos ingresados**
+10. **Validación de datos ingresados**
    - **Descripción**: Crear funciones de validación del ingreso de datos, por ejemplo, verificar que el usuario ingrese el nombre y apellido cómo tipo de dato texto y no haya ningún carácter especial y/o números, etc.
    - **Responsable**:  *(Asignar responsable)*
    - **Estado**:  *(Asignar responsable)*
 
-11.**Excepciones en el sistema**
+11. **Excepciones en el sistema**
    - **Descripción**: Crear y definir excepciones específicas para manejar errores dentro del sistema de gestión de cámaras:
         - InvalidInputError: Excepción para datos ingresados incorrectamente (formato de nombre, DNI, etc.).
         - CameraNotFoundError: Excepción para cuando se intenta acceder a una cámara inexistente.
@@ -97,7 +97,7 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
    - **Responsable**:  *(Asignar responsable)*
    - **Estado**:  *(Asignar responsable)*
      
-12.**Importar y exportar en Json los datos**
+12. **Importar y exportar en Json los datos**
    - **Descripción**: Crear funciones para importar y exportar los datos del sistema en formato JSON, permitiendo almacenar los datos ingresados a modo de base de datos. Esto facilitará la persistencia de la información, permitiendo guardar y cargar el estado del sistema.
    - **Responsable**:  *(Asignar responsable)*
    - **Estado**:  *(Asignar responsable)*
