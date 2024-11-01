@@ -64,7 +64,7 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 6. **Simulación y Pruebas**
    - **Descripción**: Crear un script de simulación para probar todas las funcionalidades del sistema.
    - **Responsable**: Mariela Torres
-   - **Estado**: Se agregaron los 30 items para la precarga de datos para personas, camaras y log_eventos. Actualizar teniendo en cuenta 
+   - **Estado**: Se agregaron los 30 items para la precarga de datos para personas, camaras y log_eventos. *Actualizar teniendo en cuenta la segunda entrega*
 
 7. **Revisión y Ajustes del Informe**
    - **Descripción**: Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
@@ -93,7 +93,11 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
         - PersonNotRegisteredError: Excepción para cuando una persona detectada no está registrada en el sistema.
         - EventNotLoggedError: Excepción para cuando no hay eventos registrados para una cámara o persona específica.
         - DuplicateEntryError: Excepción para evitar duplicados al agregar cámaras o personas.
-        - DataTypeError: Excepción para manejar el ingreso de tipos de datos incorrectos (por ejemplo, caracteres especiales en un nombre). (Relacionado con el punto anterior)
+        - DataTypeError: Excepción para manejar el ingreso de tipos de datos incorrectos (por ejemplo, caracteres especiales en un nombre). *(Relacionado con el punto anterior)*
    - **Responsable**:  *(Asignar responsable)*
    - **Estado**:  *(Asignar responsable)*
-
+     
+12.**Importar y exportar en Json los datos**
+   - **Descripción**: Crear funciones para importar y exportar los datos del sistema en formato JSON, permitiendo almacenar los datos ingresados a modo de base de datos. Esto facilitará la persistencia de la información, permitiendo guardar y cargar el estado del sistema.
+   - **Responsable**:  *(Asignar responsable)*
+   - **Estado**:  *(Asignar responsable)*
