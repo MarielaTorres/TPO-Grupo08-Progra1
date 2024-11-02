@@ -58,7 +58,7 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 
 5. **Generación de Informes**
    - **Descripción**: Crear funciones que generen informes basados en los eventos registrados: asistencia, porcentaje, mínima y máxima.
-   - **Responsable**: *(Asignar responsable)*
+   - **Responsable**: Ian
    - **Estado**: *(Pendiente)*
 
 6. **Simulación y Pruebas**
