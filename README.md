@@ -83,8 +83,8 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
      
 10. **Validación de datos ingresados**
    - **Descripción**: Crear funciones de validación del ingreso de datos, por ejemplo, verificar que el usuario ingrese el nombre y apellido cómo tipo de dato texto y no haya ningún carácter especial y/o números, etc.
-   - **Responsable**:  *(Asignar responsable)*
-   - **Estado**:  *(Asignar responsable)*
+   - **Responsable**:  Agustin 
+   - **Estado**:  En proceso
 
 11. **Excepciones en el sistema**
    - **Descripción**: Crear y definir excepciones específicas para manejar errores dentro del sistema de gestión de cámaras:
