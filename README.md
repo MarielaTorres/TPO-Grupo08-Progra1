@@ -73,8 +73,8 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 
 8. **Documentación del Código**
    - **Descripción**: Documentar todas las funciones y su uso en el código.
-   - **Responsable**: *(Asignar responsable)*
-   - **Estado**: *(Pendiente)*
+   - **Responsable**: Todos
+   - **Estado**: WIP
   
 9. **Menu de inicio y validaciones**
    - **Descripción**: Crear un menu de inicio que de acceso a las diferentes funcionalidades del sistema
@@ -94,6 +94,7 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
         - EventNotLoggedError: Excepción para cuando no hay eventos registrados para una cámara o persona específica.
         - DuplicateEntryError: Excepción para evitar duplicados al agregar cámaras o personas.
         - DataTypeError: Excepción para manejar el ingreso de tipos de datos incorrectos (por ejemplo, caracteres especiales en un nombre). *(Relacionado con el punto anterior)*
+        - FileNotFound: Excepción en caso de que el archivo json no exista (ver si en caso de que no exista lo creamos o lo agregamos como excepción)
    - **Responsable**:  *(Asignar responsable)*
    - **Estado**:  *(Asignar responsable)*
      
