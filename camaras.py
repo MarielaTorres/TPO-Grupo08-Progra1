@@ -13,19 +13,19 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-def crearCamara(camaras, camara, lugar, contador_id):
+def crearCamara(camaras,camara=None, lugar=None):
     """Crea una nueva cámara y la agrega al diccionario 'camaras' con un ID generado automáticamente.
 
     Args:
         camaras: El diccionario donde se almacenarán las cámaras.
-        camara: El nombre o modelo de la cámara.
-        lugar: La ubicación de la cámara.
-        contador_id: El contador actual para generar el ID.
     """
-    
+    contador_id = len(camaras)+1
+    if camara is None:
+        camara = input("Ingrese el nombre de la cámara: ")
+    if lugar is None:
+        lugar = input("Ingrese el lugar de la cámara: ")
     camaras[contador_id] = {'camara': camara, 'lugar': lugar}
-    print("¡Cámara creada exitosamente con el ID", contador_id, "!")
-    return contador_id + 1  # Retorna el nuevo contador
+    print("¡Cámara creada exitosamente con el ID", contador_id,"!")
 
 def listarCamaras(camaras):
     """Lista todas las cámaras almacenadas en el diccionario 'camaras'."""

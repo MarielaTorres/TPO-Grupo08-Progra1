@@ -36,13 +36,12 @@ def main():
     #----------------------------------------------------------------------------------------------
     camaras = {}
     personas = {}
-    contador_id = 1
     registros = {}
 
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    contador_id = precargaDatos(camaras, personas, registros, contador_id) # Actualizamos la variable del contador ID de cámaras para que tome correctamente el ID en caso de agregar más cámaras
+    precargaDatos(camaras, personas, registros)
     
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
@@ -99,9 +98,7 @@ def main():
 
             # Aquí puedes implementar la lógica para cada opción del CRUD de cámaras
             if opcion_camara == "1":
-                camara = input("Ingrese el nombre de la cámara: ")
-                lugar = input("Ingrese el lugar de la cámara: ")                
-                contador_id = crearCamara(camaras, camara, lugar, contador_id)
+                crearCamara(camaras)
                 # Lógica para crear cámara
             elif opcion_camara == "2":
                 listarCamaras(camaras)

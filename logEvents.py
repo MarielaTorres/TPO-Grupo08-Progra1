@@ -22,7 +22,7 @@ def registrarEvento(id_camara, id_persona, registros):
         "hora": hora_actual
     }
     
-    print(f"Evento {id_evento} registrado exitosamente!")
+    print(f"!Evento {id_evento} registrado exitosamente!")
 
 def listarEventos(registros):
     """Lista todos los eventos registrados."""

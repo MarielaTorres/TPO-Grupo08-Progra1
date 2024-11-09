@@ -6,7 +6,7 @@ def crearPersona(personas,nombre=None, area=None):
         area = input("Ingrese el área: ")
     id_persona = len(personas) + 1  # Generar un ID único
     personas[id_persona] = {"nombre": nombre, "area": area}
-    print(F"Persona con ID {id_persona} creada exitosamente!")
+    print(f"!Persona con ID {id_persona} creada exitosamente!")
 
 def listarPersonas(personas):
     """Lista todas las personas almacenadas."""
