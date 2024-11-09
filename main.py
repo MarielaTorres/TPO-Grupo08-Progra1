@@ -17,7 +17,7 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from logEvents import registrarEvento, listarEventos
+from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -145,13 +145,14 @@ def main():
                 eliminarPersona(personas)
 
         elif opcion == "3":  # Opción 3 - Log de Movimientos
-            opciones = 3
+            opciones = 4
             while True:
                 print("---------------------------")
                 print("\n--- Log de Movimientos ---")
                 print("---------------------------")
                 print("1. Registrar evento")
                 print("2. Listar eventos")
+                print("3. Listar personas que asistieron en una fecha específica")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_log = input("Seleccione una opción: ")
@@ -169,6 +170,8 @@ def main():
                 registrarEvento(id_camara, id_persona, registros)
             elif opcion_log == '2':
                 listarEventos(registros)
+            elif opcion_log == '3':
+                contarAsistenciasPorDia(registros)
             elif opcion_log == '0':
                 break
             else:
