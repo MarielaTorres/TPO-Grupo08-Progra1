@@ -9,7 +9,7 @@ Descripción: Modulo donde se gestionará todas las funcionalidades relacionadas
 Pendientes:
 -----------------------------------------------------------------------------------------------
 """
-
+from validaciones import esIdValido, esNombreCamaraValido, esLugarCamaraValido
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
@@ -24,8 +24,10 @@ def crearCamara(camaras,camara=None, lugar=None):
         camara = input("Ingrese el nombre de la cámara: ")
     if lugar is None:
         lugar = input("Ingrese el lugar de la cámara: ")
-    camaras[contador_id] = {'camara': camara, 'lugar': lugar}
-    print("¡Cámara creada exitosamente con el ID", contador_id,"!")
+    if esNombreCamaraValido(camara, camaras):
+        if esLugarCamaraValido(lugar):
+            camaras[contador_id] = {'camara': camara, 'lugar': lugar}
+            print("¡Cámara creada exitosamente con el ID", contador_id,"!")
 
 def listarCamaras(camaras):
     """Lista todas las cámaras almacenadas en el diccionario 'camaras'."""
@@ -43,14 +45,17 @@ def actualizarCamara(camaras, id):
         id: El ID de la cámara a actualizar.
     """
     listarCamaras(camaras)
-    if id in camaras:
+    id = input("Ingrese el ID de la cámara a actualizar: ")
+    if esIdValido(id, camaras):
         nueva_camara = input("Ingrese el nuevo nombre de la cámara (dejar en blanco para mantener el actual): ")
         nuevo_lugar = input("Ingrese el nuevo lugar (dejar en blanco para mantener el actual): ")
 
         if nueva_camara:
-            camaras[id]['camara'] = nueva_camara
+            if esNombreCamaraValido(nueva_camara, camaras):
+                camaras[id]['camara'] = nueva_camara
         if nuevo_lugar:
-            camaras[id]['lugar'] = nuevo_lugar
+            if esLugarCamaraValido(nuevo_lugar):
+                camaras[id]['lugar'] = nuevo_lugar
 
         print("¡Cámara actualizada exitosamente!")
     else:
@@ -64,8 +69,10 @@ def eliminarCamara(camaras, id):
         id: El ID de la cámara a eliminar.
     """
     listarCamaras(camaras)
-    if id in camaras:
+    id = input("Ingrese el ID de la cámara a eliminar: ")
+    if esIdValido(id, camaras):
         camaras.pop(id) 
         print("¡Cámara eliminada exitosamente!")
     else:
-        print("ID de cámara inválido.")
+            print("ID de cámara inválido.")
+

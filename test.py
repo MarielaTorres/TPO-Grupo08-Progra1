@@ -1,3 +1,18 @@
+"""
+-----------------------------------------------------------------------------------------------
+Título: Precarga de datos.
+Fecha: 07/10/2024
+Autor: Equipo 8
+
+Descripción: Modulo donde se realizara la precarga de datos para la inicializacion del sistema
+
+Pendientes:
+-----------------------------------------------------------------------------------------------
+"""
+
+#----------------------------------------------------------------------------------------------
+# FUNCIONES
+#----------------------------------------------------------------------------------------------
 from camaras import crearCamara
 from personas import crearPersona
 from logEvents import registrarEvento

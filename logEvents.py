@@ -1,3 +1,18 @@
+"""
+-----------------------------------------------------------------------------------------------
+Título: Modulo de personas del sistema de gestion de camaras
+Fecha: 07/10/2024
+Autor: Equipo 8
+
+Descripción: Modulo donde se gestionará todas las funcionalidades relacionadas con las cámaras del sistema
+
+Pendientes:
+-----------------------------------------------------------------------------------------------
+"""
+
+#----------------------------------------------------------------------------------------------
+# FUNCIONES
+#----------------------------------------------------------------------------------------------
 from datetime import datetime
 
 def registrarEvento(id_camara, id_persona, registros):

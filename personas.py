@@ -1,3 +1,19 @@
+"""
+-----------------------------------------------------------------------------------------------
+Título: Modulo de personas del sistema de gestion de camaras
+Fecha: 07/10/2024
+Autor: Equipo 8
+
+Descripción: Modulo donde se gestionará todas las funcionalidades relacionadas con las personas del sistema
+
+Pendientes:
+-----------------------------------------------------------------------------------------------
+"""
+
+#----------------------------------------------------------------------------------------------
+# FUNCIONES
+#----------------------------------------------------------------------------------------------
+
 def crearPersona(personas,nombre=None, area=None):
     """Crea una nueva persona y la agrega al diccionario."""
     if nombre is None:
