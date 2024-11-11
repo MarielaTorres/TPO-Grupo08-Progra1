@@ -95,8 +95,8 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
         - DuplicateEntryError: Excepción para evitar duplicados al agregar cámaras o personas.
         - DataTypeError: Excepción para manejar el ingreso de tipos de datos incorrectos (por ejemplo, caracteres especiales en un nombre). *(Relacionado con el punto anterior)*
         - FileNotFound: Excepción en caso de que el archivo json no exista (ver si en caso de que no exista lo creamos o lo agregamos como excepción)
-   - **Responsable**:  *(Asignar responsable)*
-   - **Estado**:  *(Asignar responsable)*
+   - **Responsable**:  Agustin/Kevin
+   - **Estado**:  En proceso
      
 12. **Importar y exportar en Json los datos**
    - **Descripción**: Crear funciones para importar y exportar los datos del sistema en formato JSON, permitiendo almacenar los datos ingresados a modo de base de datos. Esto facilitará la persistencia de la información, permitiendo guardar y cargar el estado del sistema.
