@@ -1,0 +1,147 @@
+import json
+
+
+# Función para exportar datos a un archivo JSON
+def exportar_datos(archivo, datos):
+    """Exporta datos a un archivo JSON.
+
+    Args:
+        archivo (str): Nombre del archivo donde se guardarán los datos.
+        datos (dict): Datos a exportar.
+    """
+    with open(archivo, "w", encoding="utf-8") as f:
+        json.dump(datos, f, ensure_ascii=False, indent=4)
+    print(f"Datos exportados a {archivo}")
+
+
+# Función para importar datos desde un archivo JSON
+def importar_datos(archivo):
+    """Importa datos desde un archivo JSON.
+    Args:
+        archivo (str): Nombre del archivo desde el que se cargarán los datos.
+    Returns:
+        dict: Datos importados.
+    """
+    try:
+        with open(archivo, "r", encoding="utf-8") as f:
+            datos = json.load(f)
+            result = {item["id"]: item for item in datos}
+        print(f"Datos importados de {archivo}")
+        return result
+    except FileNotFoundError:
+        print(f"El archivo {archivo} no se encontró.")
+        return {}
+    except json.JSONDecodeError:
+        print(
+            f"Error al decodificar el archivo {archivo}. Asegúrate de que sea un archivo JSON válido."
+        )
+        return {}
+
+
+def importar_datos_segun_id(archivo, id):
+    """Importa un diccionario del Json según su id.
+    Args:
+        archivo (str): Nombre del archivo desde el que se cargarán los datos.
+        id (int): id del dato a importar
+    Returns:
+        dict: Diccionario importado según su id.
+    """
+    datos = importar_datos(archivo)
+
+    for objeto in datos:
+        dicDato = datos[objeto]
+        if id == dicDato["id"]:
+            return dicDato
+    print("No se encontró el id en el archivo.")
+
+
+def actualizar_dato_dict(archivo, id, dic: dict):
+    """Actualiza un dato (Value) del diccionario según su id (Key) desde un archivo JSON.
+
+    Args:
+        archivo (str): Nombre del archivo desde el que se cargarán los datos.
+        id (str): id del dato
+        dic (dict): Diccionario con los datos sin actualizar
+    Returns:
+        dict: Datos Actualizados si se encontró el id, de lo contrario retorna el diccionario sin cambios.
+    """
+
+    datos = importar_datos(archivo)
+    for objeto in datos:
+        dicDato = datos[objeto]
+        if id == dicDato["id"]:
+            dicId = dic[id]
+            dicId["nombre"] = dicDato["nombre"]
+            dicId["edad"] = dicDato["edad"]
+            print("Se actualizo el diccionario con el id: ", id)
+            return dic
+    print("No se encuentro dicciopnario con el id: ", id)
+
+
+def actualizar_dato_json(archivo, id, dic):
+    """Actualiza un diccionario del archivo JSON según el id
+
+    Args:
+        archivo (str): Nombre del archivo desde el que se cargarán los datos.
+        id (str): id del dato
+        dic (dict): Diccionario con los datos actualizados
+    Returns:
+    """
+    datosActualizados = []
+    bandera = False
+    datos = importar_datos(archivo)
+
+    for objeto in datos:
+        dicDatos = datos[objeto]
+        if id == dicDatos["id"]:
+            dicId = dic[id]
+            datosActualizados.append(dicId)
+            bandera = True
+        else:
+            datosActualizados.append(dicDatos)
+
+    if not bandera:
+        print("No se encontró el id en el archivo.")
+        return
+
+    exportar_datos(archivo, datosActualizados)
+
+
+def eliminar_dato_json(archivo, id):
+    """Elimina un dato del archivo JSON según su id.
+    Args:
+        archivo (str): Nombre del archivo desde el que se eliminará el dato.
+        id (str): id del dato a eliminar.
+    """
+    try:
+        # Leer los datos del archivo
+        datos = importar_datos(archivo)
+
+        datosActualizados = []  # Lista para almacenar los datos actualizados
+        bandera = False
+
+        # Buscar el id en los datos y eliminarlo
+        for objeto in datos:
+            dicDato = datos[objeto]
+            if id == dicDato["id"]:
+                # Si se encuentra el id, no se agrega a la lista de datos actualizados
+                bandera = True
+            else:
+                # Si no se encuentra, se agrega a la lista de datos actualizados
+                datosActualizados.append(dicDato)
+
+        if not bandera:
+            print("No se encontró el id en el archivo.")
+            return
+
+        # Guardar los datos actualizados en el archivo
+        exportar_datos(archivo, datosActualizados)
+
+        print(f"Registro con id {id} eliminado de {archivo}")
+    except FileNotFoundError:
+        print(f"El archivo {archivo} no se encontró.")
+    except json.JSONDecodeError:
+        print(
+            f"Error al decodificar el archivo {archivo}. Asegúrate de que sea un archivo JSON válido."
+        )
+
