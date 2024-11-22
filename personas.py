@@ -14,7 +14,7 @@ def listarPersonas(personas):
         print("No hay personas registradas.")
     else:
         for id_persona, persona in personas.items():
-            print(f"{id_persona}. Nombre: {persona['nombre']}, Área: {persona['area']}")
+            print(f"ID:{id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}")
 
 def actualizarPersona(personas):
     """Actualiza los datos de una persona existente."""
