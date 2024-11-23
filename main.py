@@ -17,7 +17,8 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia
+from logEvents import registrarEvento, listarEventos
+from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-
+    outputPath = '/Users/marielatorres/Desktop/Informes'
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
@@ -152,7 +153,6 @@ def main():
                 print("---------------------------")
                 print("1. Registrar evento")
                 print("2. Listar eventos")
-                print("3. Listar personas que asistieron en una fecha específica")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_log = input("Seleccione una opción: ")
@@ -165,20 +165,58 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                id_camara = input("Ingrese el ID de la cámara: ")
-                id_persona = input("Ingrese el ID de la persona: ")
-                registrarEvento(id_camara, id_persona, registros)
+                print("Listado de cámaras disponibles:\n")
+                listarCamaras(camaras)
+                id_camara = int(input("Ingrese el ID de la cámara: "))
+                print("Listado de personas:\n")
+                listarPersonas(personas)
+                id_persona = int(input("Ingrese el ID de la persona: "))
+                try:
+                    registrarEvento(id_camara, id_persona, registros, camaras, personas)
+                except ValueError as e:
+                    print(e)
+
             elif opcion_log == '2':
                 listarEventos(registros)
-            elif opcion_log == '3':
-                contarAsistenciasPorDia(registros)
             elif opcion_log == '0':
                 break
             else:
                 print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
-            pass  # Implementar menú de informes
+            opciones = 7
+            while True:
+                print("1. Cantidad de asistencias por cámara")
+                print("2. Cantidad de asistencias por persona")
+                print("3. Porcentaje de asistencia (fecha con menor y mayor)")
+                print("4. Informe de personas por área de trabajo")
+                print("5. Informe de personas que asistieron en un día")
+                print("6. Informe de cantidad de asistentes de todos los días")
+                print("0. Volver al menú principal")
+                print("---------------------------")
+                opcion_informe = input("Seleccione una opción: ")
+                if opcion_informe in [str(i) for i in range(0, opciones)]:  # Solo continua si se elige una opción de menú válida
+                    break
+                else:
+                    input("Opción inválida. Presione ENTER para volver a seleccionar.")
+                print()
+
+            if opcion_informe == "0":  # Volver al menú principal
+                continue
+            
+            if opcion_informe == "1":
+                informeAsistenciasPorCamara(registros)
+            elif opcion_informe == "2":
+                asistenciasPorPersona(registros)
+            elif opcion_informe == "3":
+                porcentajeAsistenciaPorFecha(registros)
+            elif opcion_informe == "4":
+                informePersonasPorArea(personas)
+            elif opcion_informe == "5":
+                listarAsistentesPorDia(registros, personas, outputPath)
+            elif opcion_informe == "6":
+                generarInformeAsistenciasGeneral(registros, outputPath)
+              # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
