@@ -17,7 +17,8 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia,listarAsistentesPorDia
+from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia
+from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -183,7 +184,35 @@ def main():
                 print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
-            pass  # Implementar menú de informes
+            opciones = 5
+            while True:
+                print("1. Cantidad de asistencias por cámara")
+                print("2. Cantidad de asistencias por persona")
+                print("3. Porcentaje de asistencia (fecha con menor y mayor)")
+                print("4. Informe de personas por área de trabajo")
+
+                print("0. Volver al menú principal")
+                print("---------------------------")
+                opcion_informe = input("Seleccione una opción: ")
+                if opcion_informe in [str(i) for i in range(0, opciones)]:  # Solo continua si se elige una opción de menú válida
+                    break
+                else:
+                    input("Opción inválida. Presione ENTER para volver a seleccionar.")
+                print()
+
+            if opcion_informe == "0":  # Volver al menú principal
+                continue
+            
+            if opcion_informe == "1":
+                informeAsistenciasPorCamara(registros)
+            elif opcion_informe == "2":
+                asistenciasPorPersona(registros)
+            elif opcion_informe == "3":
+                porcentajeAsistenciaPorFecha(registros)
+            elif opcion_informe == "4":
+                informePersonasPorArea(personas)
+            
+              # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
