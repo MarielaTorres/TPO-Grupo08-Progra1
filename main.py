@@ -165,9 +165,17 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                id_camara = input("Ingrese el ID de la cámara: ")
-                id_persona = input("Ingrese el ID de la persona: ")
-                registrarEvento(id_camara, id_persona, registros)
+                print("Listado de cámaras disponibles:\n")
+                listarCamaras(camaras)
+                id_camara = int(input("Ingrese el ID de la cámara: "))
+                print("Listado de personas:\n")
+                listarPersonas(personas)
+                id_persona = int(input("Ingrese el ID de la persona: "))
+                try:
+                    registrarEvento(id_camara, id_persona, registros, camaras, personas)
+                except ValueError as e:
+                    print(e)
+
             elif opcion_log == '2':
                 listarEventos(registros)
             elif opcion_log == '3':

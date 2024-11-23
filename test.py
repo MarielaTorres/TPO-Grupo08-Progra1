@@ -45,7 +45,7 @@ def precargaDatos(camaras, personas, registros):
 
     # Precarga de personas
     print("\n--- Precargando Personas ---")
-    for i in range(1, cant_personas_carga):
+    for i in range( cant_personas_carga):
         nombre_persona = nombres_personas[i]
         area = random.choice(areas_trabajo)
         crearPersona(personas, nombre_persona, area)
@@ -55,5 +55,5 @@ def precargaDatos(camaras, personas, registros):
     for i in range(1, 31):
         id_camara = str(i)
         id_persona = str(i)
-        registrarEvento(id_camara, id_persona, registros)
+        registrarEvento(id_camara, id_persona, registros,camaras, personas)
 
