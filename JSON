@@ -2,7 +2,7 @@ import json
 
 
 # Función para exportar datos a un archivo JSON
-def exportar_datos(archivo, datos):
+def exportarDatos(archivo, datos):
     """Exporta datos a un archivo JSON.
 
     Args:
@@ -15,7 +15,7 @@ def exportar_datos(archivo, datos):
 
 
 # Función para importar datos desde un archivo JSON
-def importar_datos(archivo):
+def importarDatos(archivo):
     """Importa datos desde un archivo JSON.
     Args:
         archivo (str): Nombre del archivo desde el que se cargarán los datos.
@@ -38,7 +38,7 @@ def importar_datos(archivo):
         return {}
 
 
-def importar_datos_segun_id(archivo, id):
+def importarDatosSegunId(archivo, id):
     """Importa un diccionario del Json según su id.
     Args:
         archivo (str): Nombre del archivo desde el que se cargarán los datos.
@@ -46,7 +46,7 @@ def importar_datos_segun_id(archivo, id):
     Returns:
         dict: Diccionario importado según su id.
     """
-    datos = importar_datos(archivo)
+    datos = importarDatos(archivo)
 
     for objeto in datos:
         dicDato = datos[objeto]
@@ -55,7 +55,7 @@ def importar_datos_segun_id(archivo, id):
     print("No se encontró el id en el archivo.")
 
 
-def actualizar_dato_dict(archivo, id, dic: dict):
+def actualizarDatoDict(archivo, id, dic: dict):
     """Actualiza un dato (Value) del diccionario según su id (Key) desde un archivo JSON.
 
     Args:
@@ -66,7 +66,7 @@ def actualizar_dato_dict(archivo, id, dic: dict):
         dict: Datos Actualizados si se encontró el id, de lo contrario retorna el diccionario sin cambios.
     """
 
-    datos = importar_datos(archivo)
+    datos = importarDatos(archivo)
     for objeto in datos:
         dicDato = datos[objeto]
         if id == dicDato["id"]:
@@ -78,7 +78,7 @@ def actualizar_dato_dict(archivo, id, dic: dict):
     print("No se encuentro dicciopnario con el id: ", id)
 
 
-def actualizar_dato_json(archivo, id, dic):
+def actualizarDatoJson(archivo, id, dic):
     """Actualiza un diccionario del archivo JSON según el id
 
     Args:
@@ -89,7 +89,7 @@ def actualizar_dato_json(archivo, id, dic):
     """
     datosActualizados = []
     bandera = False
-    datos = importar_datos(archivo)
+    datos = importarDatos(archivo)
 
     for objeto in datos:
         dicDatos = datos[objeto]
@@ -104,10 +104,10 @@ def actualizar_dato_json(archivo, id, dic):
         print("No se encontró el id en el archivo.")
         return
 
-    exportar_datos(archivo, datosActualizados)
+    exportarDatos(archivo, datosActualizados)
 
 
-def eliminar_dato_json(archivo, id):
+def eliminarDatoJson(archivo, id):
     """Elimina un dato del archivo JSON según su id.
     Args:
         archivo (str): Nombre del archivo desde el que se eliminará el dato.
@@ -115,7 +115,7 @@ def eliminar_dato_json(archivo, id):
     """
     try:
         # Leer los datos del archivo
-        datos = importar_datos(archivo)
+        datos = importarDatos(archivo)
 
         datosActualizados = []  # Lista para almacenar los datos actualizados
         bandera = False
@@ -135,7 +135,7 @@ def eliminar_dato_json(archivo, id):
             return
 
         # Guardar los datos actualizados en el archivo
-        exportar_datos(archivo, datosActualizados)
+        exportarDatos(archivo, datosActualizados)
 
         print(f"Registro con id {id} eliminado de {archivo}")
     except FileNotFoundError:
