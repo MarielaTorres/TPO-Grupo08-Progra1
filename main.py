@@ -17,8 +17,8 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia
-from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha
+from logEvents import registrarEvento, listarEventos
+from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -184,13 +184,14 @@ def main():
                 print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
-            opciones = 5
+            opciones = 7
             while True:
                 print("1. Cantidad de asistencias por cámara")
                 print("2. Cantidad de asistencias por persona")
                 print("3. Porcentaje de asistencia (fecha con menor y mayor)")
                 print("4. Informe de personas por área de trabajo")
-
+                print("5. Informe de personas que asistieron en un día")
+                print("6. Informe de cantidad de asistentes de todos los días")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_informe = input("Seleccione una opción: ")
@@ -211,7 +212,10 @@ def main():
                 porcentajeAsistenciaPorFecha(registros)
             elif opcion_informe == "4":
                 informePersonasPorArea(personas)
-            
+            elif opcion_informe == "5":
+                listarAsistentesPorDia(registros, personas, outputPath)
+            elif opcion_informe == "6":
+                generarInformeAsistenciasGeneral(registros, outputPath)
               # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
