@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 def registrarEvento(id_camara, id_persona,registros, camaras, personas):
     """
@@ -60,3 +61,43 @@ def contarAsistenciasPorDia(registros):
         print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
     
     return list(personas_vistas)
+    
+def listarAsistentesPorDia(registros, personas, outputPath):
+    """
+    Genera un archivo .txt con la lista de personas que asistieron en una fecha específica.
+    
+    Args:
+        registros: Diccionario de eventos registrados.
+        personas: Diccionario de personas registradas.
+        outputPath: Ruta donde se guardará el archivo.
+    """
+    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ")
+    personas_vistas = set()
+
+    # Filtrar eventos por la fecha dada
+    for evento in registros.values():
+        if evento["fecha"] == fecha_dia:
+            personas_vistas.add(int(evento["persona_detectada"]))
+
+    if personas_vistas:
+        # Nombre del archivo
+        archivo_nombre = f"Asistentes_{fecha_dia.replace('-', '')}.txt"
+        
+        # Crear la ruta si no existe
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
+        
+        # Crear el archivo
+        with open(archivo_path, "w") as archivo:
+            # Escribir header
+            archivo.write(f"Personas que asistieron el {fecha_dia}\n")
+
+            # Escribir los datos de las personas
+            for id_persona in personas_vistas:
+                if id_persona in personas:
+                    persona = personas[id_persona]
+                    archivo.write(f"ID: {id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}\n")
+        
+        print(f"Informe generado exitosamente: {archivo_path}")
+    else:
+        print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")

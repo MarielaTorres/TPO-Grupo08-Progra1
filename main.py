@@ -17,7 +17,7 @@ Pendientes:
 
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
-from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia
+from logEvents import registrarEvento, listarEventos,contarAsistenciasPorDia,listarAsistentesPorDia
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-
+    outputPath = '/Users/marielatorres/Desktop/Informes'
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
@@ -152,7 +152,6 @@ def main():
                 print("---------------------------")
                 print("1. Registrar evento")
                 print("2. Listar eventos")
-                print("3. Listar personas que asistieron en una fecha específica")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_log = input("Seleccione una opción: ")
@@ -178,8 +177,6 @@ def main():
 
             elif opcion_log == '2':
                 listarEventos(registros)
-            elif opcion_log == '3':
-                contarAsistenciasPorDia(registros)
             elif opcion_log == '0':
                 break
             else:
