@@ -142,7 +142,7 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         if evento.get("fecha") == fecha_dia:
             persona_id = evento.get("persona_detectada")
             if persona_id:
-                personas_vistas.add(int(persona_id))
+                personas_vistas.add(persona_id)
 
     if personas_vistas:
         try:
@@ -154,7 +154,8 @@ def listarAsistentesPorDia(registros, personas, outputPath):
 
             with open(archivo_path, "w") as archivo:
                 archivo.write(f"Personas que asistieron el {fecha_dia}\n")
-                for id_persona in personas_vistas:
+                # Ordenar personas por ID
+                for id_persona in sorted(personas_vistas, key=int):  # Asegura la comparación numérica
                     if id_persona in personas:
                         persona = personas[id_persona]
                         archivo.write(f"ID: {id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}\n")
