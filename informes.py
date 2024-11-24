@@ -15,9 +15,10 @@ def validar_fecha(fecha):
 def personasCaptadasPorCamaras(registros, outputPath):
     """Genera un archivo .txt con la lista de cámaras y la cantidad de personas captadas por cada cámara."""
     fecha_dia = input("Ingrese la fecha para generar el informe de personas captadas por cámara (YYYY-MM-DD): ")
-    if not validar_fecha(fecha_dia):
-        print("Error: La fecha ingresada no tiene el formato correcto (YYYY-MM-DD).")
-        return
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
+
 
     asistencias_por_camara = {}
 
@@ -58,8 +59,13 @@ def informePersonasPorArea(personas, outputPath):
         personas: Diccionario de personas registradas.
         outputPath: Ruta donde se guardará el archivo.
     """
-    fecha_dia = input("Ingrese la fecha para generar el informe de personas captadas por cámara (YYYY-MM-DD): ")
+    fecha_dia = input("Ingrese la fecha para generar el informe de cantidad de personas en cada area de trabajo (YYYY-MM-DD): ")
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
+
     personas_por_area = {}
+
     for persona in personas.values():
         area = persona["area"]
         if area in personas_por_area:
@@ -138,9 +144,10 @@ def porcentajeAsistenciaPorFechas(registros, personas, outputPath):
 def listarAsistentesPorDia(registros, personas, outputPath):
     """Genera un archivo .txt con la lista de personas que asistieron en una fecha específica."""
     fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ")
-    if not validar_fecha(fecha_dia):
-        print("Error: La fecha ingresada no tiene el formato correcto (YYYY-MM-DD).")
-        return
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
+
 
     personas_vistas = set()
 
