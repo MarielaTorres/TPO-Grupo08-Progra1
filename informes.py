@@ -1,82 +1,125 @@
 import os
-
+from datetime import datetime
 #----------------------------------------------------------------------------------------------
 # FUNCIONES DE INFORMES
 #----------------------------------------------------------------------------------------------
+def validar_fecha(fecha):
+    """Valida que una fecha ingresada tenga el formato correcto (YYYY-MM-DD)."""
+    try:
+        datetime.strptime(fecha, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
-def informeAsistenciasPorCamara(registros):
-    """Genera un informe de la cantidad de asistencias registradas por cada cámara."""
+def personasCaptadasPorCamaras(registros, outputPath):
+    """Genera un archivo .txt con la lista de cámaras y la cantidad de personas captadas por cada cámara."""
+    fecha_dia = input("Ingrese la fecha para generar el informe de personas captadas por cámara (YYYY-MM-DD): ")
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
     asistencias_por_camara = {}
+    # Filtrar eventos por la fecha dada
     for evento in registros.values():
-        id_camara = evento["camara"]
-        if id_camara in asistencias_por_camara:
-            asistencias_por_camara[id_camara] += 1
-        else:
-            asistencias_por_camara[id_camara] = 1
+        if evento.get("fecha") == fecha_dia:
+            id_camara = evento.get("camara")
+            if id_camara:
+                asistencias_por_camara[id_camara] = asistencias_por_camara.get(id_camara, 0) + 1
 
-    print("\n--- Informe de Asistencias por Cámara ---")
-    for camara, cantidad in asistencias_por_camara.items():
-        print(f"Cámara ID {camara}: {cantidad} asistencias registradas")
-    return asistencias_por_camara
+    if asistencias_por_camara:
+        try:
+            archivo_nombre = f"personas_por_camara_{fecha_dia.replace('-', '')}.txt"
+            os.makedirs(outputPath, exist_ok=True)
+            archivo_path = os.path.join(outputPath, archivo_nombre)
 
+            with open(archivo_path, "w") as archivo:
+                archivo.write(f"--- Informe de personas captadas por cámara (Fecha: {fecha_dia}) ---\n")
+                for camara, cantidad in asistencias_por_camara.items():
+                    archivo.write(f"Cámara ID {camara}: {cantidad} personas captadas\n")
 
+            print(f"Informe generado exitosamente: {archivo_path}")
+        except OSError as e:
+            print(f"Error al crear el archivo: {e}")
+    else:
+        print(f"No se detectaron personas en la fecha {fecha_dia}.")
 
-def informePersonasPorArea(personas):
-    """Genera un informe de la cantidad de personas en cada área de trabajo."""
+def informePersonasPorArea(personas, outputPath):
+    """Genera un archivo .txt mostrando la cantidad de personas en cada area de trabajo.
+    
+    Args:
+        personas: Diccionario de personas registradas.
+        outputPath: Ruta donde se guardará el archivo.
+    """
+    fecha_dia = input("Ingrese la fecha para generar el informe de cantidad de personas en cada area de trabajo (YYYY-MM-DD): ")
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
+
     personas_por_area = {}
+
     for persona in personas.values():
         area = persona["area"]
         if area in personas_por_area:
             personas_por_area[area] += 1
         else:
             personas_por_area[area] = 1
+    
+    if personas_por_area:
+        #Generar archivo .txt
+        archivo_nombre= f"personas_por_area_{fecha_dia.replace('-', '')}.txt"
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
 
-    print("\n--- Informe de Personas por Área de Trabajo ---")
-    for area, cantidad in personas_por_area.items():
-        print(f"Área: {area}, Cantidad de personas: {cantidad}")
+        with open(archivo_path, "w") as archivo:
+            archivo.write(f"--- Informe de personas por area de trabajo (Fecha: {fecha_dia}) ---\n")
+            for area, cantidad in personas_por_area.items():
+                archivo.write(f"Area: {area}, Cantidad de personas: {cantidad}\n")
+        print(f"\nEl informe ha sido guardado en '{outputPath}'.")
+    else:
+        print("No se encontraron personas registradas para generar el informe.")
     return personas_por_area
 
-def asistenciasPorPersona(registros):
-    """Cuenta la cantidad de asistencias para cada persona."""
-    asistencias = {}
-    for evento in registros.values():
-        persona_id = evento["persona_detectada"]
-        if persona_id in asistencias:
-            asistencias[persona_id] += 1
-        else:
-            asistencias[persona_id] = 1
+def porcentajeAsistenciaPorFechas(registros, personas, outputPath):
+    """Genera un archivo .txt mostrando la fecha con mayor y menor porcentaje de asistencia."""
+    total_personas = len(personas)
+    if total_personas == 0:
+        print("No hay personas registradas para calcular asistencia.")
+        return
 
-    for persona, cantidad in asistencias.items():
-        print(f"ID Persona: {persona}, Asistencias: {cantidad}")
-    return asistencias
-
-def porcentajeAsistenciaPorFecha(registros):
-    """Calcula el porcentaje de asistencia para la fecha de menor y mayor asistencia."""
-    # Contar asistencias por fecha
     asistencias_por_fecha = {}
-    for evento in registros.values():
-        fecha = evento["fecha"]
-        asistencias_por_fecha[fecha] = asistencias_por_fecha.get(fecha, 0) + 1
-    
-    if not asistencias_por_fecha:
-        print("No hay asistencias registradas.")
-        return None
-    
-    # Encontrar las fechas con menor y mayor asistencia
-    fecha_menor = min(asistencias_por_fecha, key=asistencias_por_fecha.get)
-    fecha_mayor = max(asistencias_por_fecha, key=asistencias_por_fecha.get)
-    total_eventos = sum(asistencias_por_fecha.values())
-    
-    # Calcular porcentaje de asistencia para esas fechas
-    porcentaje_menor = (asistencias_por_fecha[fecha_menor] / total_eventos) * 100
-    porcentaje_mayor = (asistencias_por_fecha[fecha_mayor] / total_eventos) * 100
 
-    print(f"Fecha con menor asistencia: {fecha_menor} ({porcentaje_menor:.2f}%)")
-    print(f"Fecha con mayor asistencia: {fecha_mayor} ({porcentaje_mayor:.2f}%)")
-    return {
-        "fecha_menor": (fecha_menor, porcentaje_menor),
-        "fecha_mayor": (fecha_mayor, porcentaje_mayor)
-    }
+    for evento in registros.values():
+        fecha = evento.get("fecha")
+        if fecha:
+            if fecha not in asistencias_por_fecha:
+                asistencias_por_fecha[fecha] = set()
+            asistencias_por_fecha[fecha].add(evento.get("persona_detectada"))
+
+    porcentaje_por_fecha = {}
+    for fecha, asistentes in asistencias_por_fecha.items():
+        porcentaje_por_fecha[fecha] = (len(asistentes) / total_personas) * 100
+
+    if not porcentaje_por_fecha:
+        print("No se registraron asistencias en los registros.")
+        return
+
+    try:
+        archivo_nombre = "Informe_Asistencias_Porcentajes.txt"
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
+
+        fecha_mayor_asistencia = max(porcentaje_por_fecha, key=porcentaje_por_fecha.get)
+        fecha_menor_asistencia = min(porcentaje_por_fecha, key=porcentaje_por_fecha.get)
+
+        with open(archivo_path, "w") as archivo:
+            archivo.write("Informe de Porcentaje de Asistencia\n\n")
+            archivo.write(f"Fecha con mayor asistencia: {fecha_mayor_asistencia}\n")
+            archivo.write(f"Porcentaje de asistencia: {porcentaje_por_fecha[fecha_mayor_asistencia]:.2f}%\n\n")
+            archivo.write(f"Fecha con menor asistencia: {fecha_menor_asistencia}\n")
+            archivo.write(f"Porcentaje de asistencia: {porcentaje_por_fecha[fecha_menor_asistencia]:.2f}%\n")
+
+        print(f"Informe generado exitosamente: {archivo_path}")
+    except OSError as e:
+        print(f"Error al crear el archivo: {e}")
 
 def listarAsistentesPorDia(registros, personas, outputPath):
     """
@@ -87,38 +130,41 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         personas: Diccionario de personas registradas.
         outputPath: Ruta donde se guardará el archivo.
     """
-    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ").strip()
+    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ")
+    while not validar_fecha(fecha_dia):
+        print("La fecha ingresada es inválida. Intente nuevamente.")
+        fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
+        
     personas_vistas = set()
 
     # Filtrar eventos por la fecha dada
-    for evento_id, evento in registros.items():
-        if evento["fecha"] == fecha_dia:
-            personas_vistas.add(evento["persona_detectada"]) 
+    for evento in registros.values():
+        if evento.get("fecha") == fecha_dia:
+            persona_id = evento.get("persona_detectada")
+            if persona_id:
+                personas_vistas.add(persona_id)
 
     if personas_vistas:
-        # Nombre del archivo
-        archivo_nombre = f"Asistentes_{fecha_dia.replace('-', '')}.txt"
-        
-        # Crear la ruta si no existe
-        os.makedirs(outputPath, exist_ok=True)
-        archivo_path = os.path.join(outputPath, archivo_nombre)
-        
-        # Crear el archivo
-        with open(archivo_path, "w", encoding="utf-8") as archivo:
-            # Escribir header
-            archivo.write(f"Personas que asistieron el {fecha_dia}\n")
-            archivo.write("-" * 40 + "\n")
+        try:
+            # Nombre del archivo
+            archivo_nombre = f"Asistentes_{fecha_dia.replace('-', '')}.txt"
+            # Crear la ruta si no existe
+            os.makedirs(outputPath, exist_ok=True)
+            archivo_path = os.path.join(outputPath, archivo_nombre)
 
-            # Escribir los datos de las personas
-            for id_persona in personas_vistas:
-                if id_persona in personas:
-                    persona = personas[id_persona]
-                    archivo.write(f"ID: {id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}\n")
-        
-        print(f"Informe generado exitosamente: {archivo_path}")
+            with open(archivo_path, "w") as archivo:
+                archivo.write(f"Personas que asistieron el {fecha_dia}\n")
+                # Ordenar personas por ID
+                for id_persona in sorted(personas_vistas, key=int):  # Asegura la comparación numérica
+                    if id_persona in personas:
+                        persona = personas[id_persona]
+                        archivo.write(f"ID: {id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}\n")
+
+            print(f"Informe generado exitosamente: {archivo_path}")
+        except OSError as e:
+            print(f"Error al crear el archivo: {e}")
     else:
         print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
-
 
 def generarInformeAsistenciasGeneral(registros, outputPath):
     """

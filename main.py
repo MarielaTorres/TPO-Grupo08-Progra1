@@ -13,14 +13,12 @@ Pendientes:
 
 #----------------------------------------------------------------------------------------------
 # MÓDULOS
-#----------------------------------------------------------------------------------------------
-import os
+#----------------------------------------------------------------------------------------------ß
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
-from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha,listarAsistentesPorDia,generarInformeAsistenciasGeneral
-
-
+from informes import personasCaptadasPorCamaras, informePersonasPorArea, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
+from precargaDatos import precargaDatos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
@@ -32,6 +30,7 @@ from informes import informeAsistenciasPorCamara, informePersonasPorArea, asiste
 #----------------------------------------------------------------------------------------------
 
 def main():
+
     #----------------------------------------------------------------------------------------------
     # Inicialización de variables y diccionarios
     #----------------------------------------------------------------------------------------------
@@ -39,32 +38,35 @@ def main():
     personas = {}
     registros = {}
     outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPathJSON = outputPath + '/JSON'
+    
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    precargaDatos(camaras, personas, registros)
-    
+    camaras, personas, registros = precargaDatos(outputPathJSON)
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
     while True:
-        print()
-        print("---------------------------")
-        print("MENÚ DEL SISTEMA PRINCIPAL           ")
-        print("---------------------------")
-        print("[1] Gestión de cámaras")
-        print("[2] Gestión de personas")
-        print("[3] Log de Movimientos")
-        print("[4] Informes generales")
-        print("---------------------------")
-        print("[0] Salir del programa")
-        print()
+        opciones = 5
+        while True:
+            print()
+            print("---------------------------")
+            print("MENÚ DEL SISTEMA PRINCIPAL           ")
+            print("---------------------------")
+            print("[1] Gestión de cámaras")
+            print("[2] Gestión de personas")
+            print("[3] Log de Movimientos")
+            print("[4] Informes generales")
+            print("---------------------------")
+            print("[0] Salir del programa")
+            print()
             
-        opcion = input("Seleccione una opción: ")
-        if opcion in [str(i) for i in range(0, opciones)]:  # Solo continua si se elige una opción de menú válida
-            break
-        else:
-            input("Opción inválida. Presione ENTER para volver a seleccionar.")
+            opcion = input("Seleccione una opción: ")
+            if opcion in [str(i) for i in range(0, opciones)]:  # Solo continua si se elige una opción de menú válida
+                break
+            else:
+                input("Opción inválida. Presione ENTER para volver a seleccionar.")
         print()
 
         if opcion == "0":  # Opción salir del programa
@@ -163,17 +165,7 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                print("Listado de cámaras disponibles:\n")
-                listarCamaras(camaras)
-                id_camara = int(input("Ingrese el ID de la cámara: "))
-                print("Listado de personas:\n")
-                listarPersonas(personas)
-                id_persona = int(input("Ingrese el ID de la persona: "))
-                try:
-                    registrarEvento(id_camara, id_persona, registros, camaras, personas)
-                except ValueError as e:
-                    print(e)
-
+                registrarEvento(registros, camaras, personas)
             elif opcion_log == '2':
                 listarEventos(registros)
             elif opcion_log == '0':
@@ -182,14 +174,17 @@ def main():
                 print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
-            opciones = 7
+            opciones = 6
             while True:
-                print("1. Cantidad de asistencias por cámara")
-                print("2. Cantidad de asistencias por persona")
-                print("3. Porcentaje de asistencia (fecha con menor y mayor)")
-                print("4. Informe de personas por área de trabajo")
-                print("5. Informe de personas que asistieron en un día")
-                print("6. Informe de cantidad de asistentes de todos los días")
+                print()
+                print("---------------------------")
+                print("\n--- Informes generales ---")
+                print("---------------------------")
+                print("1. Cantidad de personas detectadas por cámara")
+                print("2. Porcentaje de asistencia (fecha con menor y mayor asistencia)")
+                print("3. Informe de personas por área de trabajo")
+                print("4. Informe de personas que asistieron en un día")
+                print("5. Informe de cantidad de asistentes de todos los días")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_informe = input("Seleccione una opción: ")
@@ -203,20 +198,18 @@ def main():
                 continue
             
             if opcion_informe == "1":
-                informeAsistenciasPorCamara(registros)
+                personasCaptadasPorCamaras(registros, outputPath)
             elif opcion_informe == "2":
-                asistenciasPorPersona(registros)
+                porcentajeAsistenciaPorFechas (registros, personas, outputPath)
             elif opcion_informe == "3":
-                porcentajeAsistenciaPorFecha(registros)
+                informePersonasPorArea(personas, outputPath)
             elif opcion_informe == "4":
-                informePersonasPorArea(personas)
-            elif opcion_informe == "5":
                 listarAsistentesPorDia(registros, personas, outputPath)
-            elif opcion_informe == "6":
+            elif opcion_informe == "5":
                 generarInformeAsistenciasGeneral(registros, outputPath)
-              # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
+        print("\n\n")
 
 # Punto de entrada al programa
 if __name__ == "__main__":
