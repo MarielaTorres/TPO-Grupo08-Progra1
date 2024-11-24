@@ -1,22 +1,45 @@
 from datetime import datetime
+from camaras import listarCamaras
+from personas import listarPersonas
 
-def registrarEvento(id_camara, id_persona,registros, camaras, personas):
+def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None):
     """
     Args:
-        id_camara: Identificador de la cámara que detecta el evento.
-        id_persona: Id de la persona detectada.
         registros: Diccionario de logs
         camaras: Diccionario de cámaras disponibles.
         personas: Diccionario de personas registradas.
+        id_camara: Identificador de la cámara que detecta el evento.
+        id_persona: Id de la persona detectada.
     """
+    """Solicitamos el id_camara por teclado en caso de que no se haya pasado por parámetro"""
+ # Solicitar ID de cámara si no se pasa como parámetro
+    while id_camara is None:
+        try:
+            print("Listado de cámaras disponibles:\n")
+            listarCamaras(camaras)
+            id_camara = input("Ingrese el ID de la cámara: ")
+            if int(id_camara) not in camaras:
+                print()
+                print("===========================ERROR===========================\n")
+                raise ValueError(f"ID de cámara inválido: {id_camara}. Verifique las cámaras disponibles a continuación e ingrese nuevamente el id_camara:\n")
+        except ValueError as e:
+            print(e)
+            id_camara = None  # Reiniciar para volver a solicitar el ID
 
-    """ Verificamos si la cámara y la persona existen"""
-
-    if int(id_camara) not in camaras:
-        raise ValueError(f"ID de cámara inválido: {id_camara}. Verifique las cámaras disponibles.")
-    if int(id_persona) not in personas:
-        raise ValueError(f"ID de persona inválido: {id_persona}. Verifique las personas disponibles.")
-    
+    # Solicitar ID de persona si no se pasa como parámetro
+    while id_persona is None:
+        try:
+            print("Listado de personas dadas de alta:\n")
+            listarPersonas(personas)
+            id_persona = input("Ingrese el ID de la persona: ")
+            if int(id_persona) not in personas:
+                print()
+                print("===========================ERROR===========================\n")
+                raise ValueError(f"ID de persona inválido: {id_persona}. Verifique las personas disponibles a continuación e ingrese nuevamente el id_persona:\n")
+        except ValueError as e:
+            print(e)
+            id_persona = None  # Reiniciar para volver a solicitar el ID
+  
     """ Se genera un ID único para el evento"""
     id_evento = f"E{str(len(registros) + 1).zfill(3)}"
     
