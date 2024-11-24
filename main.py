@@ -18,7 +18,7 @@ Pendientes:
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
-from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha,listarAsistentesPorDia,generarInformeAsistenciasGeneral
+from informes import personasCaptadasPorCamaras, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPath = "C:\\Users\\iann\\Documents\\Reportes"
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
@@ -186,9 +186,9 @@ def main():
         elif opcion == "4":  # Opción 4 - Informes generales
             opciones = 7
             while True:
-                print("1. Cantidad de asistencias por cámara")
+                print("1. Cantidad de personas captadas por cámara")
                 print("2. Cantidad de asistencias por persona")
-                print("3. Porcentaje de asistencia (fecha con menor y mayor)")
+                print("3. Porcentaje de asistencia (fecha con menor y mayor asistencia)")
                 print("4. Informe de personas por área de trabajo")
                 print("5. Informe de personas que asistieron en un día")
                 print("6. Informe de cantidad de asistentes de todos los días")
@@ -205,13 +205,13 @@ def main():
                 continue
             
             if opcion_informe == "1":
-                informeAsistenciasPorCamara(registros)
+                personasCaptadasPorCamaras(registros, outputPath)
             elif opcion_informe == "2":
-                asistenciasPorPersona(registros)
+                asistenciasPorPersona(registros, personas, outputPath)
             elif opcion_informe == "3":
-                porcentajeAsistenciaPorFecha(registros)
+                porcentajeAsistenciaPorFechas (registros, personas, outputPath)
             elif opcion_informe == "4":
-                informePersonasPorArea(personas)
+                informePersonasPorArea(personas, outputPath)
             elif opcion_informe == "5":
                 listarAsistentesPorDia(registros, personas, outputPath)
             elif opcion_informe == "6":

@@ -4,25 +4,40 @@ import os
 # FUNCIONES DE INFORMES
 #----------------------------------------------------------------------------------------------
 
-def informeAsistenciasPorCamara(registros):
-    """Genera un informe de la cantidad de asistencias registradas por cada cámara."""
+def personasCaptadasPorCamaras(registros, outputPath):
+    """Genera un archivo .txt con la lista de camaras y la cantidad de personas captadas de cada camara."""
+    fecha_dia = input("Ingrese la fecha para generar el informe de personas captadas por cámara (YYYY-MM-DD): ")
     asistencias_por_camara = {}
+
+    # Filtrar eventos por la fecha dada
     for evento in registros.values():
-        id_camara = evento["camara"]
-        if id_camara in asistencias_por_camara:
-            asistencias_por_camara[id_camara] += 1
-        else:
-            asistencias_por_camara[id_camara] = 1
+        if evento["fecha"] == fecha_dia:
+            id_camara = evento["camara"]
+            asistencias_por_camara[id_camara] = asistencias_por_camara.get(id_camara, 0) + 1
 
-    print("\n--- Informe de Asistencias por Cámara ---")
-    for camara, cantidad in asistencias_por_camara.items():
-        print(f"Cámara ID {camara}: {cantidad} asistencias registradas")
-    return asistencias_por_camara
+    if asistencias_por_camara:
+        # Generar el archivo
+        archivo_nombre = f"personas_por_camara_{fecha_dia.replace('-', '')}.txt"
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
+
+        with open(archivo_path, "w") as archivo:
+            archivo.write(f"--- Informe de personas captadas por camara (Fecha: {fecha_dia}) ---\n")
+            for camara, cantidad in asistencias_por_camara.items():
+                archivo.write(f"Cámara ID {camara}: {cantidad} personas captadas\n")
+
+        print(f"Informe generado exitosamente: {archivo_path}")
+    else:
+        print(f"No se dectetaron personas en la fecha {fecha_dia}.")
 
 
 
-def informePersonasPorArea(personas):
-    """Genera un informe de la cantidad de personas en cada área de trabajo."""
+
+
+
+
+def informePersonasPorArea(personas, outputPath):
+    """Genera un informe general de la cantidad de personas en cada área de trabajo y lo guarda en un archivo .txt especificado por outputPath."""
     personas_por_area = {}
     for persona in personas.values():
         area = persona["area"]
@@ -30,53 +45,115 @@ def informePersonasPorArea(personas):
             personas_por_area[area] += 1
         else:
             personas_por_area[area] = 1
+    
+    if personas_por_area:
+        #Generar archivo .txt
+        archivo_nombre= f"personas_por_area_ {fecha_dia.replace('-', '')}.txt"
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
 
-    print("\n--- Informe de Personas por Área de Trabajo ---")
-    for area, cantidad in personas_por_area.items():
-        print(f"Área: {area}, Cantidad de personas: {cantidad}")
+        with open(archivo_path, "w") as archivo:
+            archivo.write(f"--- Informe de personas por area de trabajo (Fecha: {fecha_dia}) ---\n")
+            for area, cantidad in personas_por_area.items:
+                archivo.write(f"Area: {area}, Cantidad de personas: {cantidad}")
+        print(f"\nEl informe ha sido guardado en '{outputPath}'.")
+
     return personas_por_area
 
-def asistenciasPorPersona(registros):
-    """Cuenta la cantidad de asistencias para cada persona."""
+
+
+
+
+
+
+def asistenciasPorPersona(registros, personas, outputPath):
+    """Cuenta la cantidad de asistencias para cada persona en una fecha específica y guarda un archivo."""
+    fecha_dia = input("Ingrese la fecha para generar el informe de asistencias por persona (YYYY-MM-DD): ")
     asistencias = {}
+
+    # Filtrar eventos por la fecha dada
     for evento in registros.values():
-        persona_id = evento["persona_detectada"]
-        if persona_id in asistencias:
-            asistencias[persona_id] += 1
-        else:
-            asistencias[persona_id] = 1
+        if evento["fecha"] == fecha_dia:
+            persona_id = evento["persona_detectada"]
+            asistencias[persona_id] = asistencias.get(persona_id, 0) + 1
 
-    for persona, cantidad in asistencias.items():
-        print(f"ID Persona: {persona}, Asistencias: {cantidad}")
-    return asistencias
+    if asistencias:
+        # Generar el archivo
+        archivo_nombre = f"Asistencias_Por_Persona_{fecha_dia.replace('-', '')}.txt"
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
 
-def porcentajeAsistenciaPorFecha(registros):
-    """Calcula el porcentaje de asistencia para la fecha de menor y mayor asistencia."""
-    # Contar asistencias por fecha
+        with open(archivo_path, "w") as archivo:
+            archivo.write(f"--- Informe de Asistencias por Persona (Fecha: {fecha_dia}) ---\n")
+            for persona_id, cantidad in asistencias.items():
+                if persona_id in personas:
+                    archivo.write(f"ID Persona: {persona_id}, Nombre: {personas[persona_id]['nombre']}, Asistencias: {cantidad}\n")
+
+        print(f"Informe generado exitosamente: {archivo_path}")
+    else:
+        print(f"No se registraron asistencias en la fecha {fecha_dia}.")
+
+
+
+
+
+
+def porcentajeAsistenciaPorFechas(registros, personas, outputPath):
+    """
+    Genera un informe con la fecha de mayor y menor porcentaje de asistencia basado en los registros.
+
+    Args:
+        registros: Diccionario de eventos registrados.
+        personas: Diccionario de personas registradas.
+        outputPath: Ruta donde se guardará el archivo.
+    """
+    total_personas = len(personas)
+    if total_personas == 0:
+        print("No hay personas registradas para calcular asistencia.")
+        return
+
     asistencias_por_fecha = {}
+    porcentaje_por_fecha = {}
+
+    # Contar asistentes únicos por fecha
     for evento in registros.values():
         fecha = evento["fecha"]
-        asistencias_por_fecha[fecha] = asistencias_por_fecha.get(fecha, 0) + 1
-    
-    if not asistencias_por_fecha:
-        print("No hay asistencias registradas.")
-        return None
-    
-    # Encontrar las fechas con menor y mayor asistencia
-    fecha_menor = min(asistencias_por_fecha, key=asistencias_por_fecha.get)
-    fecha_mayor = max(asistencias_por_fecha, key=asistencias_por_fecha.get)
-    total_eventos = sum(asistencias_por_fecha.values())
-    
-    # Calcular porcentaje de asistencia para esas fechas
-    porcentaje_menor = (asistencias_por_fecha[fecha_menor] / total_eventos) * 100
-    porcentaje_mayor = (asistencias_por_fecha[fecha_mayor] / total_eventos) * 100
+        if fecha not in asistencias_por_fecha:
+            asistencias_por_fecha[fecha] = set()
+        asistencias_por_fecha[fecha].add(evento["persona_detectada"])
 
-    print(f"Fecha con menor asistencia: {fecha_menor} ({porcentaje_menor:.2f}%)")
-    print(f"Fecha con mayor asistencia: {fecha_mayor} ({porcentaje_mayor:.2f}%)")
-    return {
-        "fecha_menor": (fecha_menor, porcentaje_menor),
-        "fecha_mayor": (fecha_mayor, porcentaje_mayor)
-    }
+    # Calcular porcentaje de asistencia por fecha
+    for fecha, asistentes in asistencias_por_fecha.items():
+        cantidad_asistentes = len(asistentes)
+        porcentaje_asistencia = (cantidad_asistentes / total_personas) * 100
+        porcentaje_por_fecha[fecha] = porcentaje_asistencia
+
+    if not porcentaje_por_fecha:
+        print("No se registraron asistencias en los registros.")
+        return
+
+    # Encontrar la fecha con mayor y menor porcentaje de asistencia
+    fecha_mayor_asistencia = max(porcentaje_por_fecha, key=porcentaje_por_fecha.get)
+    fecha_menor_asistencia = min(porcentaje_por_fecha, key=porcentaje_por_fecha.get)
+
+    # Crear el archivo con los resultados
+    archivo_nombre = "Informe_Asistencias_Porcentajes.txt"
+    os.makedirs(outputPath, exist_ok=True)
+    archivo_path = os.path.join(outputPath, archivo_nombre)
+
+    with open(archivo_path, "w") as archivo:
+        archivo.write("Informe de Porcentaje de Asistencia\n\n")
+        archivo.write(f"Fecha con mayor asistencia: {fecha_mayor_asistencia}\n")
+        archivo.write(f"Porcentaje de asistencia: {porcentaje_por_fecha[fecha_mayor_asistencia]:.2f}%\n\n")
+        archivo.write(f"Fecha con menor asistencia: {fecha_menor_asistencia}\n")
+        archivo.write(f"Porcentaje de asistencia: {porcentaje_por_fecha[fecha_menor_asistencia]:.2f}%\n")
+
+    print(f"Informe generado exitosamente: {archivo_path}")
+
+
+
+
+
 
 def listarAsistentesPorDia(registros, personas, outputPath):
     """
@@ -117,6 +194,11 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         print(f"Informe generado exitosamente: {archivo_path}")
     else:
         print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
+
+
+
+
+
 
 def generarInformeAsistenciasGeneral(registros, outputPath):
     """
