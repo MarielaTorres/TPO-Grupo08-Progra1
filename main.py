@@ -14,17 +14,17 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # MÓDULOS
 #----------------------------------------------------------------------------------------------
-
+import os
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
 from informes import informeAsistenciasPorCamara, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFecha,listarAsistentesPorDia,generarInformeAsistenciasGeneral
-from test import precargaDatos
+from precargaDatos import precargaDatos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-'''TBD'''
+
 
 #----------------------------------------------------------------------------------------------
 # CUERPO PRINCIPAL
@@ -38,12 +38,13 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPath = 'C:\\Users\\Mari\\Desktop\\Informes'
+    outputPathJSON = outputPath + "\\JSON"
+    
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    precargaDatos(camaras, personas, registros)
-    
+    camaras, personas, registros = precargaDatos(outputPathJSON)
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
@@ -186,6 +187,10 @@ def main():
         elif opcion == "4":  # Opción 4 - Informes generales
             opciones = 7
             while True:
+                print()
+                print("---------------------------")
+                print("\n--- Informes generales ---")
+                print("---------------------------")
                 print("1. Cantidad de asistencias por cámara")
                 print("2. Cantidad de asistencias por persona")
                 print("3. Porcentaje de asistencia (fecha con menor y mayor)")
@@ -216,7 +221,6 @@ def main():
                 listarAsistentesPorDia(registros, personas, outputPath)
             elif opcion_informe == "6":
                 generarInformeAsistenciasGeneral(registros, outputPath)
-              # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
