@@ -49,27 +49,27 @@ A continuación se detallan las tareas de desarrollo propuestas para el sistema,
 3. **Log de Eventos**
    - **Descripción**: Desarrollar la funcionalidad de registro de eventos capturados por las cámaras, guardando el número de cámara, nombre de la persona, fecha y hora.
    - **Responsable**: Mariela Torres
-   - **Estado**: Se desarrolló el log de eventos y se agregó al main con el menú correspondiente.
+   - **Estado**: Done, se desarrolló el log de eventos y se agregó al main con el menú correspondiente.
 
 4. **Contador de Asistencias**
    - **Descripción**: Implementar un contador que muestre cuántas veces una persona pasó por cada cámara y cuándo.
    - **Responsable**: Mariela Torres
-   - **Estado**: *(Pendiente)*
+   - **Estado**: Done, se crearon dos funciones generarInformeAsistenciasGeneral y listarAsistentesPorDia para contar las asistencias por día y un informe con las personas que asistieron en un día particular.
 
 5. **Generación de Informes**
    - **Descripción**: Crear funciones que generen informes basados en los eventos registrados: asistencia, porcentaje, mínima y máxima.
-   - **Responsable**: Ian
-   - **Estado**: *(Pendiente)*
+   - **Responsable**: Ian/Mariela
+   - **Estado**: WIP
 
 6. **Simulación y Pruebas**
    - **Descripción**: Crear un script de simulación para probar todas las funcionalidades del sistema.
    - **Responsable**: Mariela Torres
-   - **Estado**: Se agregaron los 30 items para la precarga de datos para personas, camaras y log_eventos. *Actualizar teniendo en cuenta la segunda entrega*
+   - **Estado**: Done, se actualizó la precarga en base a un archivo json para importar el diccionario para las 3 entidades (cámaras, personas y registros)
 
 7. **Revisión y Ajustes del Informe**
    - **Descripción**: Revisar el informe y asegurarse de que esté alineado con el desarrollo del código.
-   - **Responsable**: *(Asignar responsable)*
-   - **Estado**: *(Pendiente)*
+   - **Responsable**: Todos
+   - **Estado**: WIP
 
 8. **Documentación del Código**
    - **Descripción**: Documentar todas las funciones y su uso en el código.
