@@ -1,6 +1,5 @@
 import json
 
-
 # Función para exportar datos a un archivo JSON
 def exportarDatos(archivo, datos):
     """Exporta datos a un archivo JSON.
