@@ -13,8 +13,7 @@ Pendientes:
 
 #----------------------------------------------------------------------------------------------
 # MÓDULOS
-#----------------------------------------------------------------------------------------------
-import os
+#----------------------------------------------------------------------------------------------ß
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
@@ -181,12 +180,11 @@ def main():
                 print("---------------------------")
                 print("\n--- Informes generales ---")
                 print("---------------------------")
-                print("1. Cantidad de asistencias por cámara")
-                print("2. Cantidad de asistencias por persona")
-                print("3. Porcentaje de asistencia (fecha con menor y mayor asistencia)")
-                print("4. Informe de personas por área de trabajo")
-                print("5. Informe de personas que asistieron en un día")
-                print("6. Informe de cantidad de asistentes de todos los días")
+                print("1. Cantidad de personas detectadas por cámara")
+                print("2. Porcentaje de asistencia (fecha con menor y mayor asistencia)")
+                print("3. Informe de personas por área de trabajo")
+                print("4. Informe de personas que asistieron en un día")
+                print("5. Informe de cantidad de asistentes de todos los días")
                 print("0. Volver al menú principal")
                 print("---------------------------")
                 opcion_informe = input("Seleccione una opción: ")
