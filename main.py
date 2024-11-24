@@ -18,7 +18,7 @@ Pendientes:
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
-from informes import personasCaptadasPorCamaras, informePersonasPorArea, asistenciasPorPersona, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
+from informes import personasCaptadasPorCamaras, informePersonasPorArea, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from test import precargaDatos
 
 #----------------------------------------------------------------------------------------------
@@ -184,7 +184,7 @@ def main():
                 print("Opción inválida.")
 
         elif opcion == "4":  # Opción 4 - Informes generales
-            opciones = 7
+            opciones = 6
             while True:
                 print("1. Cantidad de personas captadas por cámara")
                 print("2. Cantidad de asistencias por persona")
@@ -207,14 +207,12 @@ def main():
             if opcion_informe == "1":
                 personasCaptadasPorCamaras(registros, outputPath)
             elif opcion_informe == "2":
-                asistenciasPorPersona(registros, personas, outputPath)
-            elif opcion_informe == "3":
                 porcentajeAsistenciaPorFechas (registros, personas, outputPath)
-            elif opcion_informe == "4":
+            elif opcion_informe == "3":
                 informePersonasPorArea(personas, outputPath)
-            elif opcion_informe == "5":
+            elif opcion_informe == "4":
                 listarAsistentesPorDia(registros, personas, outputPath)
-            elif opcion_informe == "6":
+            elif opcion_informe == "5":
                 generarInformeAsistenciasGeneral(registros, outputPath)
               # Implementar menú de informes
 
