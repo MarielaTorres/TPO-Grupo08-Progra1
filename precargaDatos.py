@@ -91,7 +91,7 @@ def precargaDatos(outputPathJSON):
             id_persona = str(i)
             dias_a_restar = random.randint(1, 5)
             fecha_evento = (datetime.now() - timedelta(days=dias_a_restar)).strftime("%Y-%m-%d")
-            registrarEvento(id_camara, id_persona, registros, camaras, personas)
+            registrarEvento(registros, camaras, personas, id_camara, id_persona)
             registros[f"E{i:03}"]["fecha"] = fecha_evento
         # Guardar registros
         with open(registros_file, 'w', encoding='utf-8') as f:

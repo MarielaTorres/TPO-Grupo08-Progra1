@@ -38,8 +38,8 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = 'C:\\Users\\Mari\\Desktop\\Informes'
-    outputPathJSON = outputPath + "\\JSON"
+    outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPathJSON = outputPath + '/JSON'
     
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
@@ -166,17 +166,7 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                print("Listado de cámaras disponibles:\n")
-                listarCamaras(camaras)
-                id_camara = int(input("Ingrese el ID de la cámara: "))
-                print("Listado de personas:\n")
-                listarPersonas(personas)
-                id_persona = int(input("Ingrese el ID de la persona: "))
-                try:
-                    registrarEvento(id_camara, id_persona, registros, camaras, personas)
-                except ValueError as e:
-                    print(e)
-
+                registrarEvento(registros, camaras, personas)
             elif opcion_log == '2':
                 listarEventos(registros)
             elif opcion_log == '0':
