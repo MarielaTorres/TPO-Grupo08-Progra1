@@ -87,13 +87,13 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         personas: Diccionario de personas registradas.
         outputPath: Ruta donde se guardará el archivo.
     """
-    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ")
+    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ").strip()
     personas_vistas = set()
 
     # Filtrar eventos por la fecha dada
-    for evento in registros.values():
+    for evento_id, evento in registros.items():
         if evento["fecha"] == fecha_dia:
-            personas_vistas.add(int(evento["persona_detectada"]))
+            personas_vistas.add(evento["persona_detectada"]) 
 
     if personas_vistas:
         # Nombre del archivo
@@ -104,9 +104,10 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         archivo_path = os.path.join(outputPath, archivo_nombre)
         
         # Crear el archivo
-        with open(archivo_path, "w") as archivo:
+        with open(archivo_path, "w", encoding="utf-8") as archivo:
             # Escribir header
             archivo.write(f"Personas que asistieron el {fecha_dia}\n")
+            archivo.write("-" * 40 + "\n")
 
             # Escribir los datos de las personas
             for id_persona in personas_vistas:
@@ -117,6 +118,7 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         print(f"Informe generado exitosamente: {archivo_path}")
     else:
         print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
+
 
 def generarInformeAsistenciasGeneral(registros, outputPath):
     """
