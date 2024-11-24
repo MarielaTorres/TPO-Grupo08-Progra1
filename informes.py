@@ -149,6 +149,15 @@ def listarAsistentesPorDia(registros, personas, outputPath):
         fecha_dia = input("Ingrese la fecha (YYYY-MM-DD): ")
 
 
+    """
+    Genera un archivo .txt con la lista de personas que asistieron en una fecha específica.
+    
+    Args:
+        registros: Diccionario de eventos registrados.
+        personas: Diccionario de personas registradas.
+        outputPath: Ruta donde se guardará el archivo.
+    """
+    fecha_dia = input("Ingrese la fecha para generar el informe de los que asistieron (YYYY-MM-DD): ").strip()
     personas_vistas = set()
 
     for evento in registros.values():
@@ -156,6 +165,10 @@ def listarAsistentesPorDia(registros, personas, outputPath):
             persona_id = evento.get("persona_detectada")
             if persona_id:
                 personas_vistas.add(int(persona_id))
+    # Filtrar eventos por la fecha dada
+    for evento_id, evento in registros.items():
+        if evento["fecha"] == fecha_dia:
+            personas_vistas.add(evento["persona_detectada"]) 
 
     if personas_vistas:
         try:
@@ -173,8 +186,29 @@ def listarAsistentesPorDia(registros, personas, outputPath):
             print(f"Informe generado exitosamente: {archivo_path}")
         except OSError as e:
             print(f"Error al crear el archivo: {e}")
+        # Nombre del archivo
+        archivo_nombre = f"Asistentes_{fecha_dia.replace('-', '')}.txt"
+        
+        # Crear la ruta si no existe
+        os.makedirs(outputPath, exist_ok=True)
+        archivo_path = os.path.join(outputPath, archivo_nombre)
+        
+        # Crear el archivo
+        with open(archivo_path, "w", encoding="utf-8") as archivo:
+            # Escribir header
+            archivo.write(f"Personas que asistieron el {fecha_dia}\n")
+            archivo.write("-" * 40 + "\n")
+
+            # Escribir los datos de las personas
+            for id_persona in personas_vistas:
+                if id_persona in personas:
+                    persona = personas[id_persona]
+                    archivo.write(f"ID: {id_persona}, Nombre: {persona['nombre']}, Área: {persona['area']}\n")
+        
+        print(f"Informe generado exitosamente: {archivo_path}")
     else:
         print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
+
 
 
 

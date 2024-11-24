@@ -14,17 +14,17 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # MÓDULOS
 #----------------------------------------------------------------------------------------------
-
+import os
 from personas import crearPersona, listarPersonas, actualizarPersona, eliminarPersona
 from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
 from informes import personasCaptadasPorCamaras, informePersonasPorArea, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
-from test import precargaDatos
+from precargaDatos import precargaDatos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-'''TBD'''
+
 
 #----------------------------------------------------------------------------------------------
 # CUERPO PRINCIPAL
@@ -38,12 +38,13 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = "C:\\Users\\iann\\Documents\\Reportes"
+    outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPathJSON = outputPath + '/JSON'
+    
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    precargaDatos(camaras, personas, registros)
-    
+    camaras, personas, registros = precargaDatos(outputPathJSON)
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
@@ -165,17 +166,7 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                print("Listado de cámaras disponibles:\n")
-                listarCamaras(camaras)
-                id_camara = int(input("Ingrese el ID de la cámara: "))
-                print("Listado de personas:\n")
-                listarPersonas(personas)
-                id_persona = int(input("Ingrese el ID de la persona: "))
-                try:
-                    registrarEvento(id_camara, id_persona, registros, camaras, personas)
-                except ValueError as e:
-                    print(e)
-
+                registrarEvento(registros, camaras, personas)
             elif opcion_log == '2':
                 listarEventos(registros)
             elif opcion_log == '0':
@@ -186,7 +177,11 @@ def main():
         elif opcion == "4":  # Opción 4 - Informes generales
             opciones = 6
             while True:
-                print("1. Cantidad de personas captadas por cámara")
+                print()
+                print("---------------------------")
+                print("\n--- Informes generales ---")
+                print("---------------------------")
+                print("1. Cantidad de asistencias por cámara")
                 print("2. Cantidad de asistencias por persona")
                 print("3. Porcentaje de asistencia (fecha con menor y mayor asistencia)")
                 print("4. Informe de personas por área de trabajo")
@@ -214,7 +209,6 @@ def main():
                 listarAsistentesPorDia(registros, personas, outputPath)
             elif opcion_informe == "5":
                 generarInformeAsistenciasGeneral(registros, outputPath)
-              # Implementar menú de informes
 
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
