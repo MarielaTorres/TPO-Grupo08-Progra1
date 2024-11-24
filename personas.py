@@ -1,13 +1,18 @@
+import crudJson
+from validaciones import esNombrePersonaValido, esAreaValida, esIdPersonaValido
+
 def crearPersona(personas, nombre=None, area=None):
     """Crea una nueva persona y la agrega al diccionario."""
     try:
         if nombre is None:
-            nombre = input("Ingrese el nombre: ")
+            nombre = input("Ingrese el nombre: ").strip()
         if area is None:
-            area = input("Ingrese el área: ")
-        id_persona = len(personas) + 1  # Generar un ID único
-        personas[id_persona] = {"nombre": nombre, "area": area}
-        print(f"¡Persona con ID {id_persona} creada exitosamente!")
+            area = input("Ingrese el área: ").strip()
+        if esNombrePersonaValido(nombre) and esAreaValida(area):
+            id_persona = len(personas) + 1  # Generar un ID único
+            personas[id_persona] = {"nombre": nombre, "area": area}
+            crudJson.exportarDatos("personas.json", personas)
+            print(f"¡Persona con ID {id_persona} creada exitosamente!")
     except Exception as e:
         print(f"Error al crear la persona: {e}")
 
@@ -26,19 +31,20 @@ def actualizarPersona(personas):
     """Actualiza los datos de una persona existente."""
     try:
         listarPersonas(personas)
-        id_persona = int(input("Ingrese el número de la persona a actualizar: "))
-        if id_persona in personas:
-            nuevo_nombre = input("Ingrese el nuevo nombre (dejar en blanco para mantener el actual): ")
-            nueva_area = input("Ingrese la nueva área (dejar en blanco para mantener la actual): ")
+        id_persona = int(input("Ingrese el número de la persona a actualizar: ").strip()) 
+        if esIdPersonaValido(id_persona, personas):
+            nuevo_nombre = input("Ingrese el nuevo nombre (dejar en blanco para mantener el actual): ").strip()
+            nueva_area = input("Ingrese la nueva área (dejar en blanco para mantener la actual): ").strip()
             if nuevo_nombre:
                 personas[id_persona]["nombre"] = nuevo_nombre
             if nueva_area:
                 personas[id_persona]["area"] = nueva_area
+            crudJson.actualizarDatoJson("personas.json", id_persona, personas)
             print("¡Persona actualizada exitosamente!")
-        else:
-            print("ID inválido.")
     except ValueError:
         print("Error: Debe ingresar un número válido para el ID.")
+    except KeyError as e:
+        print(f"Error: {e}")
     except Exception as e:
         print(f"Error al actualizar la persona: {e}")
 
@@ -46,13 +52,14 @@ def eliminarPersona(personas):
     """Elimina una persona del diccionario."""
     try:
         listarPersonas(personas)
-        id_persona = int(input("Ingrese el número de la persona a eliminar: "))
-        if id_persona in personas:
+        id_persona = int(input("Ingrese el número de la persona a eliminar: ").strip())
+        if esIdPersonaValido(id_persona, personas):
             del personas[id_persona]
+            crudJson.eliminarDatoJson("personas.json", id_persona)
             print("¡Persona eliminada exitosamente!")
-        else:
-            print("ID inválido.")
     except ValueError:
         print("Error: Debe ingresar un número válido para el ID.")
+    except KeyError as e:
+        print(f"Error: {e}")
     except Exception as e:
         print(f"Error al eliminar la persona: {e}")

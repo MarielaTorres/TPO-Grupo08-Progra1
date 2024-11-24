@@ -1,6 +1,8 @@
 from datetime import datetime
 from camaras import listarCamaras
+import crudJson
 from personas import listarPersonas
+from validaciones import esIdValido, esIdPersonaValido
 
 def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None):
     """
@@ -17,12 +19,12 @@ def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None
         try:
             print("Listado de cámaras disponibles:\n")
             listarCamaras(camaras)
-            id_camara = input("Ingrese el ID de la cámara: ")
-            if int(id_camara) not in camaras:
+            id_camara = int(input("Ingrese el ID de la cámara: ").strip())
+            if not esIdValido(id_camara , camaras):
                 print()
                 print("===========================ERROR===========================\n")
-                raise ValueError(f"ID de cámara inválido: {id_camara}. Verifique las cámaras disponibles a continuación e ingrese nuevamente el id_camara:\n")
-        except ValueError as e:
+                raise ValueError(f"ID de cámara inválido: {id_camara}. Verifique las cámaras disponibles a continuación e ingrese nuevamente el id:\n")
+        except (ValueError, KeyError) as e:
             print(e)
             id_camara = None  # Reiniciar para volver a solicitar el ID
 
@@ -31,12 +33,12 @@ def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None
         try:
             print("Listado de personas dadas de alta:\n")
             listarPersonas(personas)
-            id_persona = input("Ingrese el ID de la persona: ")
-            if int(id_persona) not in personas:
+            id_persona = int(input("Ingrese el ID de la persona: ").strip())
+            if not esIdPersonaValido(id_persona, personas):
                 print()
                 print("===========================ERROR===========================\n")
-                raise ValueError(f"ID de persona inválido: {id_persona}. Verifique las personas disponibles a continuación e ingrese nuevamente el id_persona:\n")
-        except ValueError as e:
+                raise ValueError(f"ID de persona inválido: {id_persona}. Verifique las personas disponibles a continuación e ingrese nuevamente el id:\n")
+        except (ValueError, KeyError) as e:
             print(e)
             id_persona = None  # Reiniciar para volver a solicitar el ID
   
@@ -54,8 +56,9 @@ def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None
         "fecha": fecha_actual,
         "hora": hora_actual
     }
-    
-    print(f"Evento {id_evento} registrado exitosamente!")
+
+    crudJson.exportarDatos("registros.json", registros)
+    print(f"Evento {id_evento} registrado exitosamente!") 
 
 def listarEventos(registros):
     """Lista todos los eventos registrados."""
@@ -69,14 +72,12 @@ def listarEventos(registros):
             
 def contarAsistenciasPorDia(registros):
     """Devuelve una lista de personas que asistieron en una fecha dada ingresada por el usuario."""
-    try:
-        fecha_dia = input("Ingrese la fecha para verificar asistencias (YYYY-MM-DD): ").strip()
-        
-        # Validar formato de la fecha
-        try:
-            datetime.strptime(fecha_dia, "%Y-%m-%d")
-        except ValueError:
-            raise ValueError("La fecha ingresada no tiene el formato válido (YYYY-MM-DD).")
+
+    fecha_dia = input("Ingrese la fecha para verificar asistencias (YYYY-MM-DD): ").strip()   
+    try: # Validar formato de la fecha
+        datetime.strptime(fecha_dia, "%Y-%m-%d")
+    except ValueError:
+        raise ValueError("La fecha ingresada no tiene el formato válido (YYYY-MM-DD).")
         
         personas_vistas = set()
 

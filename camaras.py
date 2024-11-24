@@ -9,6 +9,8 @@ Descripción: Modulo donde se gestionará todas las funcionalidades relacionadas
 Pendientes:
 -----------------------------------------------------------------------------------------------
 """
+from validaciones import esIdValido, esNombreCamaraValido, esLugarCamaraValido
+import crudJson
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
@@ -20,17 +22,14 @@ def crearCamara(camaras, camara=None, lugar=None):
     """
     try:
         contador_id = len(camaras) + 1
-        if camara is None:
+        if not camara:
             camara = input("Ingrese el nombre de la cámara: ").strip()
-            if not camara:
-                raise ValueError("El nombre de la cámara no puede estar vacío.")
-        if lugar is None:
+        if not lugar :
             lugar = input("Ingrese el lugar de la cámara: ").strip()
-            if not lugar:
-                raise ValueError("El lugar de la cámara no puede estar vacío.")
-
-        camaras[contador_id] = {'camara': camara, 'lugar': lugar}
-        print(f"¡Cámara creada exitosamente con el ID {contador_id}!")
+        if esNombreCamaraValido(camara, camaras) and esLugarCamaraValido(lugar):
+            camaras[contador_id] = {'camara': camara, 'lugar': lugar}
+            crudJson.exportarDatos("camaras.json", camaras)
+            print(f"¡Cámara creada exitosamente con el ID {contador_id}!")
     except ValueError as e:
         print(f"Error al crear la cámara: {e}")
     except Exception as e:
@@ -56,19 +55,17 @@ def actualizarCamara(camaras, id):
     """
     try:
         listarCamaras(camaras)
-        id = int(id)  # Asegurarse de que el ID sea un entero
-        if id not in camaras:
-            raise KeyError(f"El ID {id} no corresponde a ninguna cámara registrada.")
+        id = int(input("Ingrese el ID de la cámara a actualizar: ").strip())   # Asegurarse de que el ID sea un entero
+        if esIdValido(id, camaras):
+            nueva_camara = input("Ingrese el nuevo nombre de la cámara (dejar en blanco para mantener el actual): ").strip()
+            nuevo_lugar = input("Ingrese el nuevo lugar (dejar en blanco para mantener el actual): ").strip()
+            if nueva_camara:
+                camaras[id]['camara'] = nueva_camara
+            if nuevo_lugar:
+                camaras[id]['lugar'] = nuevo_lugar
+            crudJson.actualizarDatoJson("camaras.json", id, camaras)
+            print("¡Cámara actualizada exitosamente!")
 
-        nueva_camara = input("Ingrese el nuevo nombre de la cámara (dejar en blanco para mantener el actual): ").strip()
-        nuevo_lugar = input("Ingrese el nuevo lugar (dejar en blanco para mantener el actual): ").strip()
-
-        if nueva_camara:
-            camaras[id]['camara'] = nueva_camara
-        if nuevo_lugar:
-            camaras[id]['lugar'] = nuevo_lugar
-
-        print("¡Cámara actualizada exitosamente!")
     except ValueError:
         print("Error: El ID debe ser un número entero.")
     except KeyError as e:
@@ -85,12 +82,11 @@ def eliminarCamara(camaras, id):
     """
     try:
         listarCamaras(camaras)
-        id = int(id)  # Asegurarse de que el ID sea un entero
-        if id not in camaras:
-            raise KeyError(f"El ID {id} no corresponde a ninguna cámara registrada.")
-
-        camaras.pop(id)
-        print("¡Cámara eliminada exitosamente!")
+        id = int(input("Ingrese el ID de la cámara a actualizar: ").strip()) # Asegurarse de que el ID sea un entero
+        if esIdValido(id, camaras):
+            camaras.pop(id)
+            crudJson.eliminarDatoJson("camaras.json", id)
+            print("¡Cámara eliminada exitosamente!")
     except ValueError:
         print("Error: El ID debe ser un número entero.")
     except KeyError as e:

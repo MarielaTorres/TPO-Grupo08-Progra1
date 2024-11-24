@@ -1,15 +1,9 @@
 import os
 from datetime import datetime
+from validaciones import validar_fecha
 #----------------------------------------------------------------------------------------------
 # FUNCIONES DE INFORMES
 #----------------------------------------------------------------------------------------------
-def validar_fecha(fecha):
-    """Valida que una fecha ingresada tenga el formato correcto (YYYY-MM-DD)."""
-    try:
-        datetime.strptime(fecha, "%Y-%m-%d")
-        return True
-    except ValueError:
-        return False
 
 def personasCaptadasPorCamaras(registros, outputPath):
     """Genera un archivo .txt con la lista de cámaras y la cantidad de personas captadas por cada cámara."""

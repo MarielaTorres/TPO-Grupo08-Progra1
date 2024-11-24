@@ -37,7 +37,7 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = '/Users/marielatorres/Desktop/Informes'
+    outputPath = '/Users/marielatorres/Desktop/Informes' # Chequear
     outputPathJSON = outputPath + '/JSON'
     
     #----------------------------------------------------------------------------------------------
@@ -105,16 +105,14 @@ def main():
                 listarCamaras(camaras)
                 # Lógica para listar cámaras
             elif opcion_camara == "3":
-                id = int(input("Ingrese el ID de la cámara a actualizar: ")) 
-                actualizarCamara(camaras, id)
+                actualizarCamara(camaras)
                 # Lógica para actualizar cámara
             elif opcion_camara == "4":
-                id = int(input("Ingrese el ID de la cámara a actualizar: ")) 
-                eliminarCamara(camaras, id)
+                eliminarCamara(camaras)
                 # Lógica para eliminar cámara
 
         elif opcion == "2":  # Opción 2 - Gestión de personas
-            opciones = 6
+            opciones = 5
             while True:
                 print("---------------------------")
                 print("\n--- Menú de gestión de Personas ---")
