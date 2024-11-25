@@ -51,7 +51,7 @@ def actualizarDatoJson(archivo, id, dic):
     idStr = str(id)
 
     if idStr in datos:
-        datos[idStr] = dic  # Actualiza el diccionario con el nuevo contenido
+        datos[idStr] = dic[idStr]  # Actualiza el diccionario con el nuevo contenido
         exportarDatos(archivo, datos)
         print(f"-- Responsibilidad JSON: El ID {id} ha sido actualizado. -- ")
     else:

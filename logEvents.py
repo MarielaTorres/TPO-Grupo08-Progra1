@@ -20,7 +20,7 @@ def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None
             print("Listado de cámaras disponibles:\n")
             listarCamaras(camaras)
             id_camara = int(input("Ingrese el ID de la cámara: ").strip())
-            if not esIdValido(id_camara , camaras):
+            if not esIdValido(str(id_camara) , camaras):
                 print()
                 print("===========================ERROR===========================\n")
                 raise ValueError(f"ID de cámara inválido: {id_camara}. Verifique las cámaras disponibles a continuación e ingrese nuevamente el id:\n")
@@ -34,7 +34,7 @@ def registrarEvento(registros, camaras, personas,id_camara=None, id_persona=None
             print("Listado de personas dadas de alta:\n")
             listarPersonas(personas)
             id_persona = int(input("Ingrese el ID de la persona: ").strip())
-            if not esIdPersonaValido(id_persona, personas):
+            if not esIdPersonaValido(str(id_persona), personas):
                 print()
                 print("===========================ERROR===========================\n")
                 raise ValueError(f"ID de persona inválido: {id_persona}. Verifique las personas disponibles a continuación e ingrese nuevamente el id:\n")
@@ -69,5 +69,5 @@ def listarEventos(registros):
             print(f"ID: {id_evento} - Cámara: {evento['camara']}, "
                   f"Persona: {evento['persona_detectada']}, "
                   f"Fecha: {evento['fecha']}, Hora: {evento['hora']}")
-
+            
 

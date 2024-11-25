@@ -19,11 +19,11 @@ from camaras import crearCamara, listarCamaras, actualizarCamara, eliminarCamara
 from logEvents import registrarEvento, listarEventos
 from informes import personasCaptadasPorCamaras, informePersonasPorArea, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from precargaDatos import precargaDatos
+from validaciones import manejar_intentos
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-
 
 #----------------------------------------------------------------------------------------------
 # CUERPO PRINCIPAL
@@ -37,7 +37,7 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = '/Users/marielatorres/Desktop/Informes' # Chequear
+    outputPath = 'Users/Agustin/Desktop/TPO-Grupo08-Progra1'# Chequear
     outputPathJSON = outputPath + '/JSON'
     
     #----------------------------------------------------------------------------------------------
@@ -99,16 +99,16 @@ def main():
 
             # Aquí puedes implementar la lógica para cada opción del CRUD de cámaras
             if opcion_camara == "1":
-                crearCamara(camaras)
+                manejar_intentos(crearCamara, camaras)
                 # Lógica para crear cámara
             elif opcion_camara == "2":
-                listarCamaras(camaras)
+                manejar_intentos(listarCamaras, camaras)
                 # Lógica para listar cámaras
             elif opcion_camara == "3":
-                actualizarCamara(camaras)
+                manejar_intentos(actualizarCamara, camaras)
                 # Lógica para actualizar cámara
             elif opcion_camara == "4":
-                eliminarCamara(camaras)
+                manejar_intentos(eliminarCamara, camaras)
                 # Lógica para eliminar cámara
 
         elif opcion == "2":  # Opción 2 - Gestión de personas
@@ -135,13 +135,13 @@ def main():
                 continue
 
             if opcion_persona == "1":
-                crearPersona(personas)
+                manejar_intentos(crearPersona, personas)
             elif opcion_persona == "2":
-                listarPersonas(personas)
+                manejar_intentos(listarPersonas, personas)
             elif opcion_persona == "3":
-                actualizarPersona(personas)
+                manejar_intentos(actualizarPersona, personas)
             elif opcion_persona == "4":
-                eliminarPersona(personas)
+                manejar_intentos(eliminarPersona, personas)
 
         elif opcion == "3":  # Opción 3 - Log de Movimientos
             opciones = 4
@@ -163,9 +163,9 @@ def main():
             if opcion_log == "0":  # Volver al menú principal
                 continue
             if opcion_log == '1':
-                registrarEvento(registros, camaras, personas)
+                registrarEvento( registros, camaras, personas)
             elif opcion_log == '2':
-                listarEventos(registros)
+                manejar_intentos(listarEventos, registros)
             elif opcion_log == '0':
                 break
             else:
