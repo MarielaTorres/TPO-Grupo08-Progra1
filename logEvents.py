@@ -69,27 +69,5 @@ def listarEventos(registros):
             print(f"ID: {id_evento} - Cámara: {evento['camara']}, "
                   f"Persona: {evento['persona_detectada']}, "
                   f"Fecha: {evento['fecha']}, Hora: {evento['hora']}")
-            
-def contarAsistenciasPorDia(registros):
-    """Devuelve una lista de personas que asistieron en una fecha dada ingresada por el usuario."""
 
-    fecha_dia = input("Ingrese la fecha para verificar asistencias (YYYY-MM-DD): ").strip()   
-    try: # Validar formato de la fecha
-        datetime.strptime(fecha_dia, "%Y-%m-%d")
-    except ValueError:
-        raise ValueError("La fecha ingresada no tiene el formato válido (YYYY-MM-DD).")
-        
-        personas_vistas = set()
-
-    for evento in registros.values():
-        # Filtrar eventos por la fecha dada
-        if evento["fecha"] == fecha_dia:
-            personas_vistas.add(evento["persona_detectada"])
-    
-    if personas_vistas:
-        print(f"Personas que asistieron el {fecha_dia}: {list(personas_vistas)}")
-    else:
-        print(f"No hubo asistencias registradas en la fecha {fecha_dia}.")
-    
-    return list(personas_vistas)
 
