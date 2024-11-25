@@ -22,7 +22,7 @@ def cargar_datos_json(outputPathJSON):
     # Retorna un diccionario vacío si el archivo no existe
     return {}  
 
-def precargaDatos(outputPathJSON):
+def precargaDatos():
     """
     Crea y/o carga datos desde archivos JSON: uno para cámaras, otro para personas, y otro para registros.
     Si un archivo ya existe, lo carga; si no existe, lo genera.
@@ -33,13 +33,13 @@ def precargaDatos(outputPathJSON):
     Returns:
         tuple: Diccionarios de cámaras, personas y registros.
     """
-    # Asegurar que la ruta exista
-    os.makedirs(outputPathJSON, exist_ok=True)
+    path_base = os.path.dirname(os.path.abspath(__file__))
+    camaras_file = os.path.join(path_base, "camaras.json")
+    personas_file = os.path.join(path_base, "personas.json")
+    registros_file = os.path.join(path_base, "registros.json")
 
     # Generar nombres de archivos
-    camaras_file = os.path.join(outputPathJSON, "camaras.json")
-    personas_file = os.path.join(outputPathJSON, "personas.json")
-    registros_file = os.path.join(outputPathJSON, "registros.json")
+    
 
     # Inicializar diccionarios
     camaras = cargar_datos_json(camaras_file)
@@ -97,6 +97,6 @@ def precargaDatos(outputPathJSON):
         with open(registros_file, 'w', encoding='utf-8') as f:
             json.dump(registros, f, ensure_ascii=False, indent=4)
 
-    print(f"Archivos generados o cargados en: {outputPathJSON}")
+    print(f"Archivos generados o cargados")
     return camaras, personas, registros
 

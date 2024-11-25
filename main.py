@@ -20,6 +20,7 @@ from logEvents import registrarEvento, listarEventos
 from informes import personasCaptadasPorCamaras, informePersonasPorArea, porcentajeAsistenciaPorFechas,listarAsistentesPorDia,generarInformeAsistenciasGeneral
 from precargaDatos import precargaDatos
 from validaciones import manejar_intentos
+import os
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
@@ -37,13 +38,12 @@ def main():
     camaras = {}
     personas = {}
     registros = {}
-    outputPath = 'Users/Agustin/Desktop/TPO-Grupo08-Progra1'# Chequear
-    outputPathJSON = outputPath + '/JSON'
+    outputPath  = os.path.dirname(os.path.abspath(__file__)) + "/Informes"
     
     #----------------------------------------------------------------------------------------------
     # Precarga de datos para pruebas
     #----------------------------------------------------------------------------------------------
-    camaras, personas, registros = precargaDatos(outputPathJSON)
+    camaras, personas, registros = precargaDatos()
     #----------------------------------------------------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
