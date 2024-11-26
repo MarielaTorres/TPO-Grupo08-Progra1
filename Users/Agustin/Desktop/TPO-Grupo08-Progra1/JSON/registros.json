@@ -1,0 +1,182 @@
+{
+    "E001": {
+        "camara": "1",
+        "persona_detectada": "1",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E002": {
+        "camara": "2",
+        "persona_detectada": "2",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E003": {
+        "camara": "3",
+        "persona_detectada": "3",
+        "fecha": "2024-11-21",
+        "hora": "19:57"
+    },
+    "E004": {
+        "camara": "4",
+        "persona_detectada": "4",
+        "fecha": "2024-11-24",
+        "hora": "19:57"
+    },
+    "E005": {
+        "camara": "5",
+        "persona_detectada": "5",
+        "fecha": "2024-11-24",
+        "hora": "19:57"
+    },
+    "E006": {
+        "camara": "6",
+        "persona_detectada": "6",
+        "fecha": "2024-11-22",
+        "hora": "19:57"
+    },
+    "E007": {
+        "camara": "7",
+        "persona_detectada": "7",
+        "fecha": "2024-11-24",
+        "hora": "19:57"
+    },
+    "E008": {
+        "camara": "8",
+        "persona_detectada": "8",
+        "fecha": "2024-11-22",
+        "hora": "19:57"
+    },
+    "E009": {
+        "camara": "9",
+        "persona_detectada": "9",
+        "fecha": "2024-11-21",
+        "hora": "19:57"
+    },
+    "E010": {
+        "camara": "10",
+        "persona_detectada": "10",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E011": {
+        "camara": "11",
+        "persona_detectada": "11",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E012": {
+        "camara": "12",
+        "persona_detectada": "12",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E013": {
+        "camara": "13",
+        "persona_detectada": "13",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E014": {
+        "camara": "14",
+        "persona_detectada": "14",
+        "fecha": "2024-11-21",
+        "hora": "19:57"
+    },
+    "E015": {
+        "camara": "15",
+        "persona_detectada": "15",
+        "fecha": "2024-11-21",
+        "hora": "19:57"
+    },
+    "E016": {
+        "camara": "16",
+        "persona_detectada": "16",
+        "fecha": "2024-11-23",
+        "hora": "19:57"
+    },
+    "E017": {
+        "camara": "17",
+        "persona_detectada": "17",
+        "fecha": "2024-11-24",
+        "hora": "19:57"
+    },
+    "E018": {
+        "camara": "18",
+        "persona_detectada": "18",
+        "fecha": "2024-11-23",
+        "hora": "19:57"
+    },
+    "E019": {
+        "camara": "19",
+        "persona_detectada": "19",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E020": {
+        "camara": "20",
+        "persona_detectada": "20",
+        "fecha": "2024-11-23",
+        "hora": "19:57"
+    },
+    "E021": {
+        "camara": "21",
+        "persona_detectada": "21",
+        "fecha": "2024-11-23",
+        "hora": "19:57"
+    },
+    "E022": {
+        "camara": "22",
+        "persona_detectada": "22",
+        "fecha": "2024-11-22",
+        "hora": "19:57"
+    },
+    "E023": {
+        "camara": "23",
+        "persona_detectada": "23",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E024": {
+        "camara": "24",
+        "persona_detectada": "24",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    },
+    "E025": {
+        "camara": "25",
+        "persona_detectada": "25",
+        "fecha": "2024-11-23",
+        "hora": "19:57"
+    },
+    "E026": {
+        "camara": "26",
+        "persona_detectada": "26",
+        "fecha": "2024-11-21",
+        "hora": "19:57"
+    },
+    "E027": {
+        "camara": "27",
+        "persona_detectada": "27",
+        "fecha": "2024-11-22",
+        "hora": "19:57"
+    },
+    "E028": {
+        "camara": "28",
+        "persona_detectada": "28",
+        "fecha": "2024-11-22",
+        "hora": "19:57"
+    },
+    "E029": {
+        "camara": "29",
+        "persona_detectada": "29",
+        "fecha": "2024-11-24",
+        "hora": "19:57"
+    },
+    "E030": {
+        "camara": "30",
+        "persona_detectada": "30",
+        "fecha": "2024-11-20",
+        "hora": "19:57"
+    }
+}
